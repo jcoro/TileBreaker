@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <title>Tile Breaker - Lesson 1</title>
+    </head>
+    <body>
+        <div class="main_wrapper">
+            <div id="left_section">
+                <div id="canvas_container">
+                </div>
+                <div class="wrapper">
+                    <div class="button_wrapper">
+                        <div class="button_container">
+                            <label>X Value:</label>
+                            <input type="number" id="xNumber" placeholder="X Value">
+                            <label>Y Value:</label>
+                            <input type="number" id="yNumber" placeholder="Y Value">
+                            <button type="button" id="submitButton" class="myStartButton"> Submit</button>
+                        </div>
+                    </div>
+                    <div class="instructions">
+                        <p>Using the info in the image above, what X Value and Y Value would place the paddle on the BOTTOM CENTER of the canvas (where the orange box is)?</p>
+                        <p>HINT: The UPPER LEFT corner of the image will be placed at the canvas X and Y values we give.</p>
+                        <p>HINT: The initial X VALUE  and Y VALUE of the paddle above are both set to 0.</p>
+                    </div>
+                </div>                
+            </div>
+            <div id="right_section">
+                <div class="scoreboard">
+                    <div class="sb-header">
+                        <h2>Quiz 1</h2>
+                    </div>
+                    <div class="sb-level">
+                        <h4>Lesson: <span id="gameLevel">1</span></h4>
+                    </div>
+                    <div class="sb-score">
+                        <h3>Score: <span id="score">0%</span></h3>
+                    </div>
+                    <div class="sb-characters">
+                        <h3><span id="characters"></span></h3>
+                    </div>
+                    <div class="sb-instructions">
+                        <p>
+                            Enter an X and Y value to place the paddle on the BOTTOM CENTER of the canvas.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+    <script>
+
+        /**
+         * GAME CLASS 
+         * 
+         *  When a game is initialized, it contains the values needed to run the game.
+         * 
+         */
+        function Game() {
+
+            this.canvasWidth = 780;
+            this.canvasHeight = 510;
+            this.paddleWidth = 168;
+            this.paddleHeight = 20;
+            this.textColor = "#000000";
+            this.clipX = 0;
+            this.clipY = 0;
+            this.initialBackgroundImage = new Image();
+            this.initialBackgroundImage.src = "../img/lesson1-bg.png";
+            this.paddleImage = new Image();
+            this.paddleImage.src = "../img/paddle.png";
+            this.xValue = 0;
+            this.yValue = 0;
+            this.submitButton = document.getElementById('submitButton');
+            this.scoreSpan = document.getElementById('score');
+            this.characterSpan = document.getElementById('characters');
+        }
+                   
+        var game = new Game();
+        var display;
+        var paddle;
+
+        window.onload = function () {
+            
+            // Create game canvas on page load
+            display = new Screen(game.canvasWidth, game.canvasHeight);
+            display.drawImage(game.initialBackgroundImage);
+
+            // Create the paddle on page load (because it responds to all mouse movement
+            paddle = new Paddle(game.xValue, game.yValue);
+
+            display.drawPaddle();
+        }
+
+
+        /**
+         * CANVAS CLASS 
+         * 
+         * @param {number} width - width of canvas in pixels
+         * @param {number} height - height of canvas in pixels
+         */
+        function Screen(width, height) {
+            // create canvas and grab 2d context
+            this.canvas = document.createElement("canvas");
+            this.canvas.width = this.width = width;
+            this.canvas.height = this.height = height;
+            this.ctx = this.canvas.getContext("2d");
+            canvasContainer = document.getElementById('canvas_container');
+            // append canvas to the canvas container
+            canvasContainer.appendChild(this.canvas);
+        };
+
+        /**
+         * Draw the background image on the canvas
+         */
+        Screen.prototype.drawImage = function(image) {
+            this.ctx.drawImage(image, 0, 0);
+        };     
+
+        /**
+         * Clear the complete canvas
+         */
+        Screen.prototype.clear = function() {
+            this.ctx.clearRect(0, 0, this.width, this.height);
+        };    
+           
+
+        Screen.prototype.drawPaddle = function() {
+            //parameters are: image, clip-x, clip-y, width of img, height of img, canvas-x, canvas-y, width of img, height of img
+            this.ctx.drawImage(game.paddleImage, paddle.clipX, paddle.clipY, paddle.width, paddle.height, paddle.x, paddle.y, paddle.width, paddle.height);
+        };
+
+        Screen.prototype.drawMessage = function(text) {
+            display.ctx.font = "bold 45px Arial";
+            display.ctx.fillStyle = game.textColor;
+            var width = display.ctx.measureText(text).width
+            display.ctx.fillText(text, ((display.canvas.width-width)/2), 175);
+        };         
+
+
+        /**
+         * PADDLE CLASS 
+         * 
+         */
+        function Paddle(x, y) {
+            this.x = x;
+            this.y = y;
+            this.width = game.paddleWidth;
+            this.height = game.paddleHeight;
+            this.clipY = game.clipY;
+            this.clipX = game.clipX;
+
+        }; 
+
+        function draw() {
+            display.clear();
+            display.drawImage(game.initialBackgroundImage);
+            display.drawPaddle();
+        }         
+
+        game.submitButton.onclick = function() {             
+            paddle.x = document.getElementById('xNumber').value;
+            paddle.y = document.getElementById('yNumber').value;
+            draw();
+            if (paddle.x == 306 && paddle.y == 490){
+                game.textColor = "#006400";
+                display.drawMessage("CORRECT!");
+                game.scoreSpan.innerHTML = "100%";
+                game.scoreSpan.style.color= "#006400";
+                game.characterSpan.style.color= "#006400";
+                game.characterSpan.innerHTML = "GOOD JOB!";
+
+            } else if (paddle.x == 306 && paddle.y != 490){
+                game.textColor = "#8B0000";
+                display.drawMessage("X VALUE IS CORRECT!");
+                game.scoreSpan.innerHTML = "50%";
+                game.characterSpan.innerHTML = "ALMOST THERE!"
+
+            } else if (paddle.x != 306 && paddle.y == 490){
+                game.textColor = "#8B0000";
+                display.drawMessage("Y VALUE IS CORRECT!");
+                game.scoreSpan.innerHTML = "50%";
+                game.characterSpan.innerHTML = "ALMOST THERE!"
+
+            }
+            else {
+                game.textColor = "#8B0000";
+                display.drawMessage("KEEP TRYING!");
+                game.scoreSpan.innerHTML = "0%"; 
+                game.characterSpan.innerHTML = "KEEP TRYING!"
+            }
+        }
+     
+    </script>
+</html>

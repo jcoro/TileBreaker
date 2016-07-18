@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <link rel="stylesheet" type="text/css" href="../css/styles.css">
+        <title>Tile Breaker - Final Game</title>
+
+    </head>
+    <body>
+        <div class="main_wrapper">
+            <div class="title">
+                <h1>Tile Breaker</h1>
+            </div>
+            <div id="left_section">
+                <div id="canvas_container">
+                </div>
+                <div class="wrapper">
+                    <div class="button_wrapper">
+                        <div class="button_container">
+                            <button type="button" id="continueButton" class="myStartButton">Continue</button>
+                        </div>
+                        <div class="button_container">
+                            <button type="button" id="nextLevelButton" class="myStartButton">Next Level</button>
+                        </div>
+                        <div class="button_container">
+                            <button type="button" id="newGameButton" class="myStartButton">New Game</button>
+                        </div>
+                    </div>
+                </div>                
+            </div>
+            <div id="right_section">
+                <div class="scoreboard">
+                    <div class="sb-header">
+                        <h2>ScoreBoard</h2>
+                    </div>
+                    <div class="sb-level">
+                        <h4>Level: <span id="gameLevel">0</span></h4>
+                    </div>
+                    <div class="sb-score">
+                        <h3>Score: <span id="score">0</span></h3>
+                    </div>
+                    <div class="sb-characters">
+                        <h3>Characters: <span id="characters">0</span></h3>
+                    </div>
+                    <div class="sb-instructions">
+                        <p>
+                            Capture all 15 characters in 5 different worlds.
+                            Hint: Try to capture the characters before you break all of the tiles - or you'll need to go through each world to find them again!
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+    <script>
+
+        /**
+         * GAME CLASS 
+         * 
+         *  When a game is initialized, it contains the values needed to run the game.
+         * 
+         */
+        function Game() {
+
+            this.canvasWidth = 780;
+            this.canvasHeight = 510;
+            this.paddleWidth = 168;
+            this.initialBackgroundImage = new Image();
+            this.initialBackgroundImage.src = "../img/initial-bg.png";
+            this.winnerImage = new Image ();
+        }                    
+                           
+        var game = new Game();
+        
+        /**
+         * GAME OBJECTS
+         */
+
+        var display;
+
+
+        window.onload = function () {
+            
+            // Create game canvas on page load
+            display = new Screen(game.canvasWidth, game.canvasHeight);
+            display.drawImage(game.initialBackgroundImage);
+
+        }
+
+        /**
+         * CANVAS CLASS 
+         * 
+         * @param {number} width - width of canvas in pixels
+         * @param {number} height - height of canvas in pixels
+         */
+        function Screen(width, height) {
+            // create canvas and grab 2d context
+            this.canvas = document.createElement("canvas");
+            this.canvas.width = this.width = width;
+            this.canvas.height = this.height = height;
+            this.ctx = this.canvas.getContext("2d");
+            canvasContainer = document.getElementById('canvas_container');
+            // append canvas to the canvas container
+            canvasContainer.appendChild(this.canvas);
+        };
+
+        /**
+         * Draw the background image on the canvas
+         */
+        Screen.prototype.drawImage = function(image) {
+            this.ctx.drawImage(image, 0, 0);
+        };     
+
+        /**
+         * Clear the complete canvas
+         */
+        Screen.prototype.clear = function() {
+            this.ctx.clearRect(0, 0, this.width, this.height);
+        };                                
+     
+    </script>
+</html>
