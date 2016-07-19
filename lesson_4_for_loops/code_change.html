@@ -3,13 +3,10 @@
     <head>
         <link rel="stylesheet" type="text/css" href="../css/styles.css">
         <meta charset="utf-8" />
-        <title>Tile Breaker - Lesson 2 - For Loops</title>
+        <title>Lesson 4 For Loops</title>
     </head>
     <body>
         <div class="main_wrapper">
-            <div class="title">
-                <h1>Tile Breaker - Lesson 2</h1>
-            </div>
             <div id="left_section">
                 <div id="canvas_container">
                 </div>
@@ -33,85 +30,85 @@
                         <p>Arrays</p>
                         <p>Functions and Function Arguments</p>
                           <div class="codeSection">
-                            <h2>File: TileBreaker/lesson_2_for_loops/index.html</h2>
+                            <h2>File: TileBreaker/lesson_2_for_loops/code_change.html</h2>
                                 <pre class="prettyprint linenums:377"><code>Game.prototype.createInitialCharactersArray = function() {
 
             var gameCharacters = 
                 [
                     {
-                        'image' : '../img/bulbasaur.png',
-                        'onScreen' : 1,
-                        'name' : "bulbasaur"
+                        image: '../img/bulbasaur.png',
+                        onScreen : 1,
+                        name : "bulbasaur"
                     },
                     {
-                        'image' : '../img/chikorita.png',
-                        'onScreen' : 1,
-                        'name' : "chikorita"
+                        image : '../img/chikorita.png',
+                        onScreen : 1,
+                        name : "chikorita"
                     },
                     {
-                        'image' : '../img/tangela.png',
-                        'onScreen' : 1,
-                        'name' : "tangela"
+                        image : '../img/tangela.png',
+                        onScreen : 1,
+                        name : "tangela"
                     },
                     {
-                        'image' : '../img/cubchoo.png',
-                        'onScreen' : 2,
-                        'name' : "cubchoo"
+                        image : '../img/cubchoo.png',
+                        onScreen : 2,
+                        name : "cubchoo"
                     },
                     {
-                        'image' : '../img/regice.png',
-                        'onScreen' : 2,
-                        'name' : "regice"
+                        image : '../img/regice.png',
+                        onScreen : 2,
+                        name : "regice"
                     },
                     {
-                        'image' : '../img/glaceon.png',
-                        'onScreen' : 2,
-                        'name' : "glaceon"
+                        image : '../img/glaceon.png',
+                        onScreen : 2,
+                        name : "glaceon"
                     },
                     {
-                        'image' : '../img/charmander.png',
-                        'onScreen' : 3,
-                        'name' : "charmander"
+                        image : '../img/charmander.png',
+                        onScreen : 3,
+                        name : "charmander"
                     },
                     {
-                        'image' : '../img/ponyta.png',
-                        'onScreen' : 3,
-                        'name' : "ponyta"
+                        image : '../img/ponyta.png',
+                        onScreen : 3,
+                        name : "ponyta"
                     },
                     {
-                        'image' : '../img/slugma.png',
-                        'onScreen' : 3,
-                        'name' : "slugma"
+                        image : '../img/slugma.png',
+                        onScreen : 3,
+                        name : "slugma"
                     },
                     {
-                        'image' : '../img/squirtle.png',
-                        'onScreen' : 4,
-                        'name' : "squirtle"
+                        image : '../img/squirtle.png',
+                        onScreen : 4,
+                        name : "squirtle"
                     },
                     {
-                        'image' : '../img/golduck.png',
-                        'onScreen' : 4,
-                        'name' : "golduck"
+                        image : '../img/golduck.png',
+                        onScreen : 4,
+                        name : "golduck"
                     },
                     {
-                        'image' : '../img/poliwhirl.png',
-                        'onScreen' : 4,
-                        'name' : "poliwhirl"
+                        image : '../img/poliwhirl.png',
+                        onScreen : 4,
+                        name : "poliwhirl"
                     },
                     {
-                        'image' : '../img/nosepass.png',
-                        'onScreen' : 5,
-                        'name' : "nosepass"
+                        image : '../img/nosepass.png',
+                        onScreen : 5,
+                        name : "nosepass"
                     },
                     {
-                        'image' : '../img/regirock.png',
-                        'onScreen' : 5,
-                        'name' : "regirock"
+                        image : '../img/regirock.png',
+                        onScreen : 5,
+                        name : "regirock"
                     },
                     {
-                        'image' : '../img/gigalith.png',
-                        'onScreen' : 5,
-                        'name' : "gigalith"
+                        image : '../img/gigalith.png',
+                        onScreen : 5,
+                        name : "gigalith"
                     }
 
                 ];
@@ -233,79 +230,79 @@
             var gameCharacters = 
                 [
                     {
-                        'image' : '../img/bulbasaur.png',
-                        'onScreen' : 1,
-                        'name' : "bulbasaur"
+                        image: '../img/bulbasaur.png',
+                        onScreen : 1,
+                        name : "bulbasaur"
                     },
                     {
-                        'image' : '../img/chikorita.png',
-                        'onScreen' : 1,
-                        'name' : "chikorita"
+                        image : '../img/chikorita.png',
+                        onScreen : 1,
+                        name : "chikorita"
                     },
                     {
-                        'image' : '../img/tangela.png',
-                        'onScreen' : 1,
-                        'name' : "tangela"
+                        image : '../img/tangela.png',
+                        onScreen : 1,
+                        name : "tangela"
                     },
                     {
-                        'image' : '../img/cubchoo.png',
-                        'onScreen' : 2,
-                        'name' : "cubchoo"
+                        image : '../img/cubchoo.png',
+                        onScreen : 2,
+                        name : "cubchoo"
                     },
                     {
-                        'image' : '../img/regice.png',
-                        'onScreen' : 2,
-                        'name' : "regice"
+                        image : '../img/regice.png',
+                        onScreen : 2,
+                        name : "regice"
                     },
                     {
-                        'image' : '../img/glaceon.png',
-                        'onScreen' : 2,
-                        'name' : "glaceon"
+                        image : '../img/glaceon.png',
+                        onScreen : 2,
+                        name : "glaceon"
                     },
                     {
-                        'image' : '../img/charmander.png',
-                        'onScreen' : 3,
-                        'name' : "charmander"
+                        image : '../img/charmander.png',
+                        onScreen : 3,
+                        name : "charmander"
                     },
                     {
-                        'image' : '../img/ponyta.png',
-                        'onScreen' : 3,
-                        'name' : "ponyta"
+                        image : '../img/ponyta.png',
+                        onScreen : 3,
+                        name : "ponyta"
                     },
                     {
-                        'image' : '../img/slugma.png',
-                        'onScreen' : 3,
-                        'name' : "slugma"
+                        image : '../img/slugma.png',
+                        onScreen : 3,
+                        name : "slugma"
                     },
                     {
-                        'image' : '../img/squirtle.png',
-                        'onScreen' : 4,
-                        'name' : "squirtle"
+                        image : '../img/squirtle.png',
+                        onScreen : 4,
+                        name : "squirtle"
                     },
                     {
-                        'image' : '../img/golduck.png',
-                        'onScreen' : 4,
-                        'name' : "golduck"
+                        image : '../img/golduck.png',
+                        onScreen : 4,
+                        name : "golduck"
                     },
                     {
-                        'image' : '../img/poliwhirl.png',
-                        'onScreen' : 4,
-                        'name' : "poliwhirl"
+                        image : '../img/poliwhirl.png',
+                        onScreen : 4,
+                        name : "poliwhirl"
                     },
                     {
-                        'image' : '../img/nosepass.png',
-                        'onScreen' : 5,
-                        'name' : "nosepass"
+                        image : '../img/nosepass.png',
+                        onScreen : 5,
+                        name : "nosepass"
                     },
                     {
-                        'image' : '../img/regirock.png',
-                        'onScreen' : 5,
-                        'name' : "regirock"
+                        image : '../img/regirock.png',
+                        onScreen : 5,
+                        name : "regirock"
                     },
                     {
-                        'image' : '../img/gigalith.png',
-                        'onScreen' : 5,
-                        'name' : "gigalith"
+                        image : '../img/gigalith.png',
+                        onScreen : 5,
+                        name : "gigalith"
                     }
 
                 ];

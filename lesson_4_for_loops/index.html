@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" type="text/css" href="../css/styles.css">
+        <meta charset="utf-8" />
+        <title>Lesson 4 For Loops</title>
+    </head>
+    <body>
+        <div class="main_wrapper">
+            <div id="left_section">
+                <div id="canvas_container">
+                </div>
+                <div class="wrapper">
+                    <div class="button_wrapper">
+                        <div class="lesson_button_container">
+                            <button type="button" id="cssSlide1" class="fancy-btn">Slide 1</button>
+                            <button type="button" id="cssSlide2" class="fancy-btn">Slide 2</button>
+                        </div>
+                    </div>                    
+                    <div class="lesson_container">
+                        <section>
+                            <h2>For Loops Lesson</h2>
+                            <ol>
+                                <li>Websites are styled with a stylesheet language called CSS (<strong>C</strong>ascading<strong> S</strong>tyle <strong>S</strong>heets).</li>
+                                <li>If .html files tell the browser what "stuff" to show, .css files tell the browser how that stuff should look.</li>
+                                <li>CSS files end with .css and are usually linked to in an .html file with a stylesheet <strong>&lt;link&gt;</strong> tag inside the file's <strong>&lt;head&gt;</strong> tag . </li>
+                                <li><strong>CSS can control:</strong>                      
+                                    <ul>
+                                        <li>The layout of the page (note that this page has a right and a left section - the lesson without styles didn't.)</li>
+                                        <li>The color of everything - the text, background, buttons, etc.</li>
+                                        <li>Some animations.</li>
+                                    </ul>  
+                                </li>
+                                <li>CSS is called "cascading" stylesheets because it applies rules to elements AND all of the "child" elements within them.  For example, if we declare a font for our <strong>&lt;body&gt;</strong> tag, this font will be used for every font on the page (every element within the body tag) unless we tell CSS to do otherwise.</li>
+                                <li>Similarly, if we declare styles for our <strong>&lt;button&gt;</strong> tag, all of the buttons on the page will have this style applied to them.</li>
+                                <li>But, what if we DON'T WANT all of our buttons to look the same?</li>
+                                <li>If an element is unique (i.e., there is just ONE of them), we can add an <strong>id</strong> attribute to its HTML tag. See Slide 2 above.</li>
+                                <li>CSS declarations reference the <strong>id</strong> attribute with <strong>#</strong> followed by the id attribute name.</li>
+                                <li>If an element is NOT unique (i.e., there is just MORE THAN ONE of them), we can add an <strong>class</strong> attribute to its HTML tag.</li>
+                                <li>CSS declarations reference <strong>class</strong> attributes with <strong>.</strong> followed by the class attribute name.</li>
+                                <li>Class and Id attributes can be named anything we like, but they cannot start with a number.</li>
+                            </ol>
+                        </section>
+                        <section>
+                            <h2>CSS Quiz</h2>
+                            <p><strong>HINT:</strong> To answer the following questions it may help to right-click an element on the screen and choose "Inspect" to view the code.</p> 
+            
+                            <div class="questions_container">
+                                <h2>Question 1</h2>
+                                <div>What is the color HEX Value for the color below?</div>
+                                 <div class="test-color-span"></div>
+                                <div class="quiz_lesson_container">
+                                    <input type="text" id="answer1">    
+                                    <button type="button" id="submitButton1"> Submit</button>
+                                </div>
+                            </div>
+
+                            <div class="questions_container">
+                                <h2>Question 2</h2>
+                                <div>The buttons on this page all have rounded edges.  Inspect one of them with Google Chrome's Dev Tools and find which <strong>CSS Property</strong> rounds the edges of buttons and other elements.</div>
+                                <div class="quiz_lesson_container"> 
+                                    <input type="text" id="answer2">    
+                                    <button type="button" id="submitButton2"> Submit</button>
+                                </div>
+                            </div>
+                        
+                            <div class="questions_container">
+                                <h2>Question 3</h2>
+                                <div>This page is broken up into left and right sections. The left section of this page is a <strong>&lt;div&gt;</strong> element with an id attribute of "left_section".  According to the CSS, how wide is the <strong>&lt;div&gt;</strong> with the id of "left_section"?</div>
+                                <div class="quiz_lesson_container">
+                                    <input type="text" id="answer3">    
+                                    <button type="button" id="submitButton3"> Submit</button>
+                                </div>
+                            </div>
+
+                            <div class="questions_container">                                
+                                <h2>Question 4</h2>
+                                <div>Say we have four buttons that are coded in HTML like this:</div>
+                                <div class="image_wrapper">
+                                    <img src="../img/cssq4.png" height="84" width="610"> 
+                                </div>
+                                <div>What <strong>CSS selector</strong> would we use if we just wanted to style the <strong>THIRD ONE</strong> of them?</div>
+                                <div><strong>Note: </strong>Above, we see that elements can have more than one class applied to them, and multiple classes are separated with a comma.</div>
+                                <div class="quiz_lesson_container">  
+                                    <input type="text" id="answer4">    
+                                    <button type="button" id="submitButton4"> Submit</button>
+                                </div>
+                            </div>
+                        </section>
+                    </div>
+                </div>                
+            </div>
+            <div id="right_section">
+                <div class="scoreboard">
+                    <div class="sb-header">
+                        <h2>ScoreBoard</h2>
+                    </div>
+                    <div class="sb-level">
+                        <h4>Level: <span id="gameLevel">0</span></h4>
+                    </div>
+                    <div class="sb-score">
+                        <h3>Score: <span id="score">0</span></h3>
+                    </div>
+                    <div class="sb-characters">
+                        <h3>Characters: <span id="characters">0</span></h3>
+                    </div>
+                    <div class="sb-instructions">
+                        <p>
+                            Our game is functional, but it needs work! First, we need to create and display our characters.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script>
+
+            function Game() {
+                this.canvasWidth = 780;
+                this.canvasHeight = 510;
+                this.textColor = "#000000";
+                this.initialBackgroundImage = new Image();
+                this.initialBackgroundImage.src = "../img/css-bg1.png";
+                this.secondBackgroundImage = new Image();
+                this.secondBackgroundImage.src = "../img/css-bg2.png"; 
+                this.panel1Button = document.getElementById('cssSlide1');
+                this.panel2Button = document.getElementById('cssSlide2');
+            }
+                       
+            var game = new Game();
+            var display;
+
+            window.onload = function () {
+                
+                // Create game canvas on page load
+                display = new Screen(game.canvasWidth, game.canvasHeight);
+                display.drawImage(game.initialBackgroundImage);
+            }
+
+            /**
+             * SCREEN CLASS 
+             * 
+             * @param {number} width - width of canvas in pixels
+             * @param {number} height - height of canvas in pixels
+             */
+            function Screen(width, height) {
+                this.canvas = document.createElement("canvas");
+                this.canvas.width = this.width = width;
+                this.canvas.height = this.height = height;
+                this.ctx = this.canvas.getContext("2d");
+                canvasContainer = document.getElementById('canvas_container');
+                canvasContainer.appendChild(this.canvas);
+            };
+
+            /**
+             * Draw the background image on the canvas
+             */
+            Screen.prototype.drawImage = function(image) {
+                this.ctx.drawImage(image, 0, 0);
+            };     
+
+            /**
+             * Clear the complete canvas
+             */
+            Screen.prototype.clear = function() {
+                this.ctx.clearRect(0, 0, this.width, this.height);
+            };    
+
+            Screen.prototype.drawMessage = function(text) {
+                display.ctx.font = "bold 45px Arial";
+                display.ctx.fillStyle = game.textColor;
+                var width = display.ctx.measureText(text).width
+                display.ctx.fillText(text, ((display.canvas.width-width)/2), 175);
+            };
+
+            /**
+             * QUIZ CLASS 
+             * 
+             *  When a quiz is initialized, it contains the values needed to run the quiz.
+             * 
+             */
+            function Quiz() {
+                this.submitButton1 = document.getElementById('submitButton1');
+                this.submitButton2 = document.getElementById('submitButton2');
+                this.submitButton3 = document.getElementById('submitButton3');
+                this.submitButton4 = document.getElementById('submitButton4');
+                this.answer1value = null;
+                this.answer2value = null;
+                this.answer3value = null;
+                this.answer4value = null;
+                this.answer1correct = false;
+                this.answer2correct = false;
+                this.answer3correct = false;
+                this.answer4correct = false;
+                this.totalCorrect = 0;
+                this.scoreSpan = document.getElementById('score');
+                this.characterSpan = document.getElementById('characters');
+                this.correct = "<h2>Correct!</h2>";
+                this.incorrect = "<h2>Try Again!</h2>";
+            }
+
+            Quiz.prototype.updateSpan = function() {
+                    switch(quiz.totalCorrect) {
+                            case 1:
+                              quiz.scoreSpan.innerHTML = "25%";
+                              break;
+                            case 2:
+                              quiz.scoreSpan.innerHTML = "50%";
+                              break;
+                        case 3:
+                            quiz.scoreSpan.innerHTML = "75%";
+                            break;
+                        case 4:
+                            quiz.scoreSpan.innerHTML = "100%";
+                            quiz.scoreSpan.style.color= "#006400";
+                            break;
+                            default:
+                              quiz.scoreSpan.innerHTML = "0%";
+                        }
+            }
+            var quiz = new Quiz();
+
+            quiz.submitButton1.onclick = function() { 
+                quiz.answer1value = document.getElementById('answer1').value;
+                if(quiz.answer1value == "#4682B4" || quiz.answer1value == "#4682b4") {
+                    quiz.answer1correct = true;
+                    quiz.characterSpan.innerHTML = quiz.correct;
+                    quiz.characterSpan.style.color= "#006400";
+                    quiz.totalCorrect++;
+                    quiz.updateSpan();
+                } else {
+                    quiz.characterSpan.innerHTML = quiz.incorrect;
+                }
+            }
+
+            quiz.submitButton2.onclick = function() { 
+                quiz.answer2value = document.getElementById('answer2').value;
+                if(quiz.answer2value == "border-radius") {
+                    quiz.answer2correct = true;
+                    quiz.characterSpan.innerHTML = quiz.correct;
+                    quiz.totalCorrect++;
+                    quiz.updateSpan();
+                } else {
+                    quiz.characterSpan.innerHTML = quiz.incorrect;
+                }
+            }    
+
+            quiz.submitButton3.onclick = function() { 
+                quiz.answer3value = document.getElementById('answer3').value;
+                if(quiz.answer3value == "800px" || quiz.answer3value == "800 px") {
+                    quiz.answer3correct = true;
+                    quiz.characterSpan.innerHTML = quiz.correct;
+                    quiz.totalCorrect++;
+                    quiz.updateSpan();
+                } else {
+                    quiz.characterSpan.innerHTML = quiz.incorrect;
+                }
+            }   
+
+            quiz.submitButton4.onclick = function() { 
+                quiz.answer4value = document.getElementById('answer4').value;
+                if(quiz.answer4value == "#cssSlide3") {
+                    quiz.answer4correct = true;
+                    quiz.characterSpan.innerHTML = quiz.correct;
+                    quiz.totalCorrect++;
+                    quiz.updateSpan();
+                } else {
+                    quiz.characterSpan.innerHTML = quiz.incorrect;
+                }
+            }  
+
+            game.panel1Button.onclick = function() {
+                display.clear;
+                display.drawImage(game.initialBackgroundImage)
+            }
+
+            game.panel2Button.onclick = function() {
+                display.clear;
+                display.drawImage(game.secondBackgroundImage)
+            }                                
+        </script> 
+        <script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js"></script>       
+    </body>
+    
+</html>

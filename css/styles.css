@@ -1,6 +1,18 @@
 
-body {
-    font-family: "Gill Sans", "Gill Sans MT", Calibri, sans-serif;                
+body {  
+    font-family: Arial, helvetica, sans-serif; 
+    font-size: 18px;              
+}
+
+body p {
+    line-height: 25px;
+}
+
+.main_wrapper{
+    overflow: hidden;
+    padding: 25px;
+    width: 1021px;
+    margin: 0 auto;
 }
 
 h1 {
@@ -38,7 +50,6 @@ canvas {
 button {
     width:130px;
     height:35px;
-    box-shadow:inset 0px 1px 0px 0px #ffffff;
     background:linear-gradient(to bottom, #ededed 5%, #dfdfdf 100%);
     box-shadow: 0px 10px 14px -7px #636363;
     background-color:#ededed;
@@ -77,13 +88,6 @@ button:focus {
     font-weight:bold;
 }
 
-.main_wrapper{
-    overflow: hidden;
-    padding: 25px;
-    width: 1021px;
-    margin: 0 auto;
-}
-
 #left_section {
     width:800px;
     float: left;
@@ -107,6 +111,10 @@ h2, h3, h4 {
     height: 445px;
     width:217px;
     text-align: center;
+}
+
+.test_scoreboard {
+    position: fixed;
 }
 
 .sb-header {
@@ -138,14 +146,65 @@ h2, h3, h4 {
 
 .sb-instructions p {
     padding: 15px 20px;
+    font-size:15px;
+    line-height: 20px;
 }
 
 .instructions {
     text-align:left;
 }
 
+.lesson_container {
+    text-align:left;
+    padding:30px;
+}
+
+.lesson_container li{
+    margin-bottom:15px;
+}
+
+
+.lesson_button_container {
+    padding: 20px 0px 35px 0px;
+}
+
+.questions_container {
+    padding:25px;
+    background: #dedede;
+    margin-bottom: 20px;
+    border-radius: 6px;
+}
+
+.lesson_container h2{
+    margin-bottom:15px;
+}
+
+.quiz_lesson_container {
+    padding:30px 0px 10px 0px;
+}
+
 span#score, span#characters {
     color: #8B0000;
+}
+
+input {
+    padding: 9px;
+    border-radius: 6px;
+    border: 1px solid #777777;
+}
+
+.image_wrapper {
+    padding:15px 0px;
+}
+
+.test-color-span {
+    width:50px;
+    height: 50px;
+    background-color:#4682B4;
+}
+
+.btn_div {
+    padding:10px;
 }
 
 

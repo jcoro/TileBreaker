@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Lesson 1 HTML</title>
+  </head>
+  <body>
+  	<section>
+	  	<h1>HTML Lesson</h1>
+	  	<ol>
+		  	<li>Websites are created with a scripting language called HTML (<strong>H</strong>yper<strong>T</strong>ext <strong>M</strong>arkup <strong>L</strong>anguage).</li>
+		  	<li>The site you're currently looking at is "pure" HTML - it doesn't have any CSS styles applied to it.  That's why it looks so boring!</li>
+		  	<li>HTML files end with <strong>.html</strong> and contain certain <strong>tags</strong> telling the browser what to do.</li>
+		  	<li>We can recognize (and create) <strong>tags</strong> when we see certain words in brackets like this: <strong>&lt; &gt;</strong> </li>
+		  	<li>HTML tags normally come in pairs like <strong>&lt;p&gt;</strong> and <strong>&lt;/p&gt;</strong></li>
+				<li>The first tag in a pair is the start tag, the second tag is the end tag</li>
+				<li>The end tag is written like the start tag, but with a forward slash inserted before the tag name</li>
+				<li><strong>Some Common Tags:</strong>
+				<br/>
+				<br/>						
+			  	<ul>
+						<li>The text between <strong>&lt;html&gt; and &lt;/html&gt;</strong> describes the entire HTML document.</li>
+						<li>The text between <strong>&lt;head&gt; and &lt;/head&gt;</strong> provides information about the document.</li>
+						<li>The text between <strong>&lt;title&gt; and &lt;/title&gt;</strong> provides a title for the document (The title tag is in the document <strong>&lt;head&gt;</strong>, and the rendered title is visible in the browser tab).</li>
+						<li>The text between <strong>&lt;body&gt; and &lt;/body&gt;</strong> describes the visible page content.</li>
+						<li>The text between <strong>&lt;h1&gt; and &lt;/h1&gt;</strong> describes a heading (<strong>&lt;h2&gt;</strong>, <strong>&lt;h3&gt;</strong>, and <strong>&lt;h4&gt;</strong> tags are also headings - each a little smaller than the last.)</li>
+						<li>The text between <strong>&lt;p&gt; and &lt;/p&gt;</strong> describes a paragraph.</li>
+					</ul>
+					<br/>	
+					<br/>	
+				</li>
+
+				<li>In an HTML file, tags are nested - they exist inside of one another</li>
+				<li>Browsers read HTML files, look for tags they recognize, and compile HTML files into webpages (like this one).</li>
+				<li>HTML files can be created using simple text editors available on all computers.</li>
+				<li>When these files are opened in a browser, a webpage is created.</li>
+			</ol>
+		</section><br/>	<br/>	
+		<section>
+			<h1>HTML Quiz - <span id="complete-span">0</span>% Complete</h1>
+						<p><strong>HINT:</strong> To answer the following questions right-click an element on the screen and choose "Inspect" to view the code.</p>	
+			
+			<h2>Question 1</h2>
+			<div>This very question is enclosed in an HTML tag.  Find which type of tag it is, and enter it in the box below - include the brackets, but not the closing tag. Like this: <strong>&lt;tagname&gt;</strong></div>
+			<br/>	
+			<br/>	
+			<input type="text" id="answer1">	
+			<button type="button" id="submitButton1"> Submit</button>
+			<div id="response1"><h2></h2></div>
+
+
+			<br/>	
+			<br/>	
+			<h2>Question 2</h2>
+			<div>All of the visible content of this (and all) webpage(s) is inside the <strong>&lt;body&gt;</strong> tag.  On this current page, there are two of the same types of tags that are "direct children" of the body tag - this means that they are both directly inside of it. They are the first tag after the body opens, and the last tag before the body closes.  What type of tag are they?</div>
+			<p><strong>HINT:</strong> One of these tags encloses the <strong>HTML Lesson 1</strong> part above and the other encloses the <strong>HTML Quiz</strong> part of the page.</p>
+			<br/>	
+			<br/>	
+			<input type="text" id="answer2">	
+			<button type="button" id="submitButton2"> Submit</button>
+			<div id="response2"><h2></h2></div>
+
+
+			<br/>	
+			<br/>	
+			<h2>Question 3</h2>
+			<div>The numbered list above is an ordered list <strong>&lt;ol&gt;</strong> with an unordered list<strong>&lt;ul&gt;</strong> inside it. In an ordered list, HTML adds numbers, and in an unordered list, it adds little circles called bullets.  For both lists, it indents them automatically.  The tag for <strong>list items</strong> in each type of list is the same.  What is this tag?</div>
+
+			<br/>	
+			<br/>	
+			<input type="text" id="answer3">	
+			<button type="button" id="submitButton3"> Submit</button>
+			<div id="response3"><h2></h2></div>
+
+
+			<br/>	
+			<br/>	
+			<h2>Question 4</h2>
+			<div>What is the tag used to create the boxes where you've been entering answers? </div>
+			<p><strong>HINT:</strong> Enter only the tag in brackets - don't enter any type or id attrubutes on the tag - we'll discuss those later.</p>
+			<br/>	
+			<br/>	
+			<input type="text" id="answer4">	
+			<button type="button" id="submitButton4"> Submit</button>
+			<div id="response4"><h2></h2></div>
+			<br/>	
+			<br/>	
+			<br/>	
+			<br/>	
+			<br/>	
+			<br/>	
+			<br/>	
+			<br/>				
+		</section>
+  
+    <script>
+
+        /**
+         * QUIZ CLASS 
+         * 
+         *  When a quiz is initialized, it contains the values needed to run the quiz.
+         * 
+         */
+        function Quiz() {
+            this.submitButton1 = document.getElementById('submitButton1');
+            this.submitButton2 = document.getElementById('submitButton2');
+            this.submitButton3 = document.getElementById('submitButton3');
+            this.submitButton4 = document.getElementById('submitButton4');
+            this.answer1value = null;
+            this.answer2value = null;
+            this.answer3value = null;
+            this.answer4value = null;
+            this.responseDiv1 = document.getElementById('response1');
+            this.responseDiv2 = document.getElementById('response2');
+            this.responseDiv3 = document.getElementById('response3');
+            this.responseDiv4 = document.getElementById('response4');
+            this.answer1correct = false;
+            this.answer2correct = false;
+            this.answer3correct = false;
+            this.answer4correct = false;
+            this.totalCorrect = 0;
+            this.completeSpan = document.getElementById('complete-span');
+            this.correct = "<h2>****Correct!****</h2>";
+            this.incorrect = "<h2>****Try Again!****</h2>";
+        }
+
+        Quiz.prototype.updateSpan = function() {
+        		switch(quiz.totalCorrect) {
+					    case 1:
+					      quiz.completeSpan.innerHTML = "25";
+					      break;
+					    case 2:
+					      quiz.completeSpan.innerHTML = "50";
+					      break;
+			        case 3:
+			        	quiz.completeSpan.innerHTML = "75";
+			        	break;
+			        case 4:
+			        	quiz.completeSpan.innerHTML = "100";
+			        	break;
+					    default:
+					      quiz.completeSpan.innerHTML = "0";
+					}
+        }
+        var quiz = new Quiz();
+
+        quiz.submitButton1.onclick = function() { 
+        	quiz.answer1value = document.getElementById('answer1').value;
+        	if(quiz.answer1value == "<div>") {
+        		quiz.answer1correct = true;
+        		quiz.responseDiv1.innerHTML = quiz.correct;
+        		quiz.totalCorrect++;
+        		quiz.updateSpan();
+        	} else {
+        		quiz.responseDiv1.innerHTML = quiz.incorrect;
+        	}
+        }
+
+        quiz.submitButton2.onclick = function() { 
+        	quiz.answer2value = document.getElementById('answer2').value;
+        	if(quiz.answer2value == "<section>") {
+        		quiz.answer2correct = true;
+        		quiz.responseDiv2.innerHTML = quiz.correct;
+        		quiz.totalCorrect++;
+        		quiz.updateSpan();
+        	} else {
+        		quiz.responseDiv2.innerHTML = quiz.incorrect;
+        	}
+        }	 
+
+        quiz.submitButton3.onclick = function() { 
+        	quiz.answer3value = document.getElementById('answer3').value;
+        	if(quiz.answer3value == "<li>") {
+        		quiz.answer3correct = true;
+        		quiz.responseDiv3.innerHTML = quiz.correct;
+        		quiz.totalCorrect++;
+        		quiz.updateSpan();
+        	} else {
+        		quiz.responseDiv3.innerHTML = quiz.incorrect;
+        	}
+        }	
+
+        quiz.submitButton4.onclick = function() { 
+        	quiz.answer4value = document.getElementById('answer4').value;
+        	if(quiz.answer4value == "<input>") {
+        		quiz.answer4correct = true;
+        		quiz.responseDiv4.innerHTML = quiz.correct;
+        		quiz.totalCorrect++;
+        		quiz.updateSpan();
+        	} else {
+        		quiz.responseDiv4.innerHTML = quiz.incorrect;
+        	}
+        }		        	               
+		</script>
+	</body>
+</html>

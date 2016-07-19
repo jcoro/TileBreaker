@@ -3,7 +3,7 @@
     <head>
         <meta charset="utf-8" />
         <link rel="stylesheet" type="text/css" href="../css/styles.css">
-        <title>Tile Breaker - Lesson 1</title>
+        <title>Lesson 3 Canvas Grid</title>
     </head>
     <body>
         <div class="main_wrapper">
@@ -13,27 +13,36 @@
                 <div class="wrapper">
                     <div class="button_wrapper">
                         <div class="button_container">
-                            <label>X Value:</label>
-                            <input type="number" id="xNumber" placeholder="X Value">
-                            <label>Y Value:</label>
-                            <input type="number" id="yNumber" placeholder="Y Value">
+                            <div class="btn_div">
+                                <label>X Value:</label>
+                                <input type="number" id="xNumber" placeholder="X Value">
+                            </div>
+                            <div class="btn_div">
+                                <label>Y Value:</label>
+                                <input type="number" id="yNumber" placeholder="Y Value">
+                            </div>
                             <button type="button" id="submitButton" class="myStartButton"> Submit</button>
                         </div>
                     </div>
-                    <div class="instructions">
-                        <p>Using the info in the image above, what X Value and Y Value would place the paddle on the BOTTOM CENTER of the canvas (where the orange box is)?</p>
-                        <p>HINT: The UPPER LEFT corner of the image will be placed at the canvas X and Y values we give.</p>
-                        <p>HINT: The initial X VALUE  and Y VALUE of the paddle above are both set to 0.</p>
+                    <div class="lesson_container">
+                        <div class="instructions">
+                            <div class="questions_container">
+                                <h2>Canvas Quiz</h2>
+                                <p>Using the info in the image above, what X Value and Y Value would place the paddle on the BOTTOM CENTER of the canvas (where the orange box is)?</p>
+                                <p><strong>HINT:</strong> The initial X VALUE  and Y VALUE of the paddle above are both set to 0.</p>
+                                <p><strong>HINT:</strong> The UPPER LEFT corner of the image will be placed at the canvas X and Y values we give.  This can make the X Value calculation a little tricky.  Think about what the X Value would be if the image CENTER was placed at the X Value.  How does this help us calculate the correct X Value?</p>                                
+                            </div>
+                        </div>
                     </div>
                 </div>                
             </div>
             <div id="right_section">
-                <div class="scoreboard">
+                <div class="scoreboard test_scoreboard">
                     <div class="sb-header">
-                        <h2>Quiz 1</h2>
+                        <h2>Canvas Quiz</h2>
                     </div>
                     <div class="sb-level">
-                        <h4>Lesson: <span id="gameLevel">1</span></h4>
+                        <h4>Lesson: <span id="gameLevel">3</span></h4>
                     </div>
                     <div class="sb-score">
                         <h3>Score: <span id="score">0%</span></h3>
