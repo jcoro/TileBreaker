@@ -1,0 +1,709 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <META NAME="author" CONTENT="john@coronite.net">
+    <!--
+  Author: John Coronite
+  Email: John@Coronite.net
+  Website: coronite.net
+  Source Files Available At: https://github.com/jcoro/TileBreaker
+  Copyrighted material used in accordance with Fair-Use exemption for education in Title 17 of the U.S. Code Section 107 http://www.copyright.gov/title17/92chap1.html#107
+  
+  ****Image Credits****
+  Character images: http://bulbapedia.bulbagarden.net
+  Background and Brick images: http://www.pokemon.com/us/
+  Copyright 2016 John Coronite
+
+  This program is free software: you can redistribute it and/or modify
+  it under the terms of the GNU General Public License as published by
+  the Free Software Foundation, either version 3 of the License, or
+  (at your option) any later version.
+
+  This program is distributed in the hope that it will be useful,
+  but WITHOUT ANY WARRANTY; without even the implied warranty of
+  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  GNU General Public License for more details.
+
+  You should have received a copy of the GNU General Public License
+  along with this program.  If not, see <http://www.gnu.org/licenses/>.
+    -->
+        <link rel="stylesheet" type="text/css" href="../css/styles.css">
+        <title>Lesson 4 Intro To JavaScript</title>
+    </head>
+    <body>
+        <div class="main_wrapper">
+            <div id="left_section">
+                <div id="canvas_container">
+                </div>
+                <div class="wrapper">                   
+                    <div class="lesson_container">
+                        <section>
+                            <h2>Intro To JavaScript</h2>                               
+                                <p>HTML and CSS are static, but JavaScript can allow us to make changes to our website in response to user input.</p>
+                            <div class="questions_container"  id="example1container">
+                                <h2>Example 1</h2>
+                                <div>Click below to see JavaScript in action!</div>
+                                <div class="quiz_lesson_container">    
+                                    <button type="button" id="exampleButton1">Click Me!</button>
+                                </div>
+                            </div>
+                            <div class="codeSection">
+                                <h2>Example 1 HTML</h2>
+                            <pre class="prettyprint linenums">
+                                <code>
+&lt;div class="questions_container"  id="example1container"&gt;
+    &lt;h2&gt;Example 1&lt;/h2&gt;
+        &lt;div&gt;Click below to see JavaScript in action!&lt;/div&gt;                                
+            &lt;div class="quiz_lesson_container"&gt;    
+        &lt;button type="button" id="exampleButton1"&gt; Click Me!&lt;/button&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+                                </code>
+                            </pre>
+                        </div>
+                        <div class="codeSection">
+                        <p>JavaScript gives us access to our entire HTML file in its <strong>document object</strong>.  It uses the HTML tags we defined to break down our HTML.  The document object model, or <strong>DOM</strong>, can be visualized something like this:</p>
+                        <div class="image_container">
+                            <img src="../img/dom.png" width='486' height='266'> 
+                        </div>
+                        <p>Everything we've done so far (adding and removing tags in HTML, changing the content of tags, and adding and removing CSS styles from tags) can also be done with JavaScript.</p>
+                        <p>Below is the JavaScript code for the example above (with some comments):</p>
+                        <h2>Example 1 JavaScript</h2>
+                            <pre class="prettyprint linenums">
+                                <code>
+// First, we create a variable to reference the button.
+// Which button? The one with the id attribute of 'exampleButton1'                               
+var exampBtn1 = document.getElementById('exampleButton1');
+
+// If we have a reference to our button in a variable, JavaScript gives us the .onclick event which calls a function when the button is clicked.
+// A function is a way of telling JavaScript: Do Something!
+// When our button is clicked, JavaScript will do everything inside the brackets below.
+
+exampleButton1.onclick = function() {
+    var example1cont = document.getElementById('example1container');
+    example1cont.style.background="#ffeb38";
+    example1cont.style.border="2px solid #B80000";
+    exampBtn1.innerHTML = "Thanks!"
+}
+
+// Inside this function, we create another variable: exampInput1 to reference the input we'll be changing.
+// JavaScript lets us set the .style property to change or add a CSS declaration.
+// Using the .innerHTML property, we can also change the text on the button.  This property replaces the "stuff" inside the particular tag. 
+                                </code>
+                            </pre>
+                        </div>
+                        <p>JavaScript is well-known for its ability to alter websites in response to user actions, but it's actually a much more powerful programming language than many people realize.  Our entire game was written in JavaScript.</p>
+                        <p>To get started, we need to know a little bit about the basics.</p>
+                        <h2>Variables</h2>
+                        <p>First off, JavaScript <strong>Variables</strong> are containers for storing data values.  These variables can change as our program runs and in response to the user's actions.</p>
+
+                        <div class="codeSection">
+                            <h2>Variables</h2>
+                             <pre class="prettyprint linenums">
+                                <code>
+var price1 = 5;  //The values for these variables could be user-entered.
+var price2 = 6;
+var total = price1 + price2; // total returns 11
+
+var firstName = "Jane" // variables can refer to text or what are known as "Strings" 
+                                </code>
+                            </pre>
+                        </div>  
+
+
+                        <h2>Arithmetic Operators</h2>
+                        <p>We can use the following operators to perform arithmetic</p>
+                        <div class="table_container">
+                            <table>
+                                <tbody>
+                                    <tr>
+                                        <th style="width:50%">Operator</th>
+                                        <th>Description</th>
+                                    </tr>
+                                    <tr  style="background:#ffeb38">
+                                        <td>+</td>
+                                        <td>Addition</td>
+                                    </tr>
+                                    <tr>
+                                        <td>-</td>
+                                        <td>Subtraction</td>
+                                    </tr>
+                                    <tr>
+                                        <td>*</td>
+                                        <td>Multiplication</td>
+                                    </tr>
+                                    <tr>
+                                        <td>/</td>
+                                        <td>Division</td>
+                                    </tr>
+                                    <tr>
+                                        <td>%</td>
+                                        <td>Modulus</td>
+                                    </tr>
+                                    <tr  style="background:#ffeb38">
+                                        <td>++</td>
+                                        <td>Increment</td>
+                                    </tr>
+                                    <tr>
+                                        <td>--</td>
+                                        <td>Decrement</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div> 
+
+                        <div class="codeSection">
+                            <h2>Using Arithmetic Operators</h2>
+                            <pre class="prettyprint linenums">
+                                <code>
+//ADDITION
+var a = 10;
+var b = 20;
+var c = a + b ; // c returns 30;
+
+//SUBTRACTION
+var a = 10;
+var b = 20;
+var c = a - b ; // c returns -10;
+
+//MULTIPLICATION
+var a = 10;
+var b = 20;
+var c = a * b ; // c returns 200;
+
+//DIVISION
+var a = 10;
+var b = 20;
+var c = b / a ; // c returns 2;
+
+//MODULUS (Remainder from division)
+var a = 10;
+var b = 20;
+var c = b % a ; // c returns 0;
+
+//INCREMENT 
+var a = 10;
+a++ ; // returns 11;
+
+//DECREMENT (Remainder from division)
+var a = 10;
+a-- ; // returns 9;
+                                </code>
+                            </pre>
+                        </div>
+                            
+                        <p>As examples, in our game, we use the ++ operator to increment the score whenever a tile is hit, and the game level.</p>  
+
+                        <div class="table_container">
+                            <h2>Assignment Operators</h2>
+                            <p>Assignment Operators assign values to variables. We'll just need to know about the = operator, but there are others.</p>
+                                <table>
+                                    <tbody>
+                                        <tr>
+                                            <th style="width:50%">Operator</th>
+                                            <th>Example</th>
+                                            <th>Same As</th>
+                                        </tr>
+                                        <tr  style="background:#ffeb38">
+                                            <td>=</td>
+                                            <td>x = y</td>
+                                            <td>x = y</td>
+                                        </tr>
+                                        <tr>
+                                            <td>+=</td>
+                                            <td>x += y</td>
+                                            <td>x = x + y</td>
+                                        </tr>
+                                        <tr>
+                                            <td>-=</td>
+                                            <td>x -= y</td>
+                                            <td>x = x - y</td>
+                                        </tr>
+                                        <tr>
+                                            <td>*=</td>
+                                            <td>x *= y</td>
+                                            <td>x = x * y</td>
+                                        </tr>
+                                        <tr>
+                                            <td>/=</td>
+                                            <td>x /= y</td>
+                                            <td>x = x / y</td>
+                                        </tr>
+                                        <tr>
+                                            <td>%=</td>
+                                            <td>x %= y</td>
+                                            <td>x = x % y</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+
+                            <h2>Comparison Operators</h2>
+                            <p>We use Comparison Operators to compare two or more values.</p>
+                            <p>Note that to test "equals to" we use == or two equals signs, not one.</p> 
+                            <div class="table_container">
+                                <table>
+                                    <tbody>
+                                        <tr>
+                                            <th style="width:50%">Operator</th>
+                                            <th>Description</th>
+                                        </tr>
+                                        <tr style="background:#ffeb38">
+                                            <td>==</td>
+                                            <td>equal to</td>
+                                        </tr>
+                                        <tr>
+                                            <td>===</td>
+                                            <td>equal value and equal type</td>
+                                        </tr>
+                                        <tr style="background:#ffeb38">
+                                            <td>!=</td>
+                                            <td>not equal</td>
+                                        </tr>
+                                        <tr>
+                                            <td>!==</td>
+                                            <td>not equal value or not equal type</td>
+                                        </tr>
+                                        <tr style="background:#ffeb38">
+                                            <td>&gt;</td>
+                                            <td>greater than</td>
+                                        </tr>
+                                        <tr style="background:#ffeb38">
+                                            <td>&lt;</td>
+                                            <td>less than</td>
+                                        </tr>
+                                        <tr>
+                                            <td>&gt;=</td>
+                                            <td>greater than or equal to</td>
+                                        </tr>
+                                        <tr>
+                                            <td>&lt;=</td>
+                                            <td>less than or equal to</td>
+                                        </tr>
+                                        <tr>
+                                            <td>?</td>
+                                            <td>ternary operator</td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+
+                                <h2>Objects</h2>
+                                <p>We've seen how variables can refer to text, numbers, HTML tags.  They can also refer to what are known as "objects" - groups of named attributes that refer to a particular thing.</p>
+                                <div class="codeSection">
+                                    <h2>Defining Objects</h2>
+                                    <pre class="prettyprint linenums">
+                                        <code>
+var car = {type:"Fiat", model:"500", color:"white", mpg:50};
+var person = {firstName:"John", lastName:"Doe", age:50, eyeColor:"blue"};
+                                        </code>
+                                    </pre>
+                                </div>
+                                <p>The values are written as name:value pairs (name and value separated by a colon).</p>
+                                <p>In the name:value pairs, the "name" (first thing) is known as a property of the object.</p>
+                                <div class="codeSection">
+                                    <h2>Object Methods</h2>
+                                    <pre class="prettyprint linenums">
+                                        <code>
+var person = {
+    firstName:"John",
+    lastName:"Doe",
+    age:50,
+    eyeColor:"blue",
+    fullName: function() {
+                return this.firstName + " " + this.lastName;
+                }
+};                                
+                                        </code>
+                                    </pre>
+                                </div>
+                                <div class="codeSection">
+                                    <h2>Accessing Object Properties &amp; Methods</h2>
+                                    <pre class="prettyprint linenums">
+                                        <code>
+var person = {
+    firstName:"John",
+    lastName:"Doe",
+    age:50,
+    eyeColor:"blue",
+    fullName: function() {
+                return this.firstName + " " + this.lastName;
+                }
+};
+
+// We can access object properties two ways:
+// objectName.propertyName
+// objectName["propertyName"]  
+
+person.lastName    // equals "Doe"
+person["lastName"] // also equals "Doe"   
+
+// And we can access methods like so:
+// objectName.methodName() 
+
+name = person.fullName();   // equals "John Doe"                 
+                                        </code>
+                                    </pre>
+                                </div>
+                                <h2>Arrays</h2>
+                                <p>JavaScript arrays are used to store multiple values in a single variable.</p>
+                                <p>We can have arrays made up of various things: Strings, numbers, boolean values, or even entire objects</p>
+                                <div class="codeSection">
+                                    <h2>Creating Arrays</h2>
+                                    <pre class="prettyprint linenums">
+                                        <code>
+var cars = ["Saab", "Volvo", "BMW"];
+
+// is the same as:
+
+var cars = [
+    "Saab",
+    "Volvo",
+    "BMW"
+];                
+                                        </code>
+                                    </pre>
+                                </div>
+                                <p>Array elements are refered to by their index number.  Array indexes start with 0, not 1 and are put in brackets after the variable name
+                                <div class="codeSection">
+                                    <h2>Accessing Array Elements</h2>
+                                    <pre class="prettyprint linenums">
+                                        <code>
+var cars = ["Saab", "Volvo", "BMW"];
+
+cars[1] = "Volvo"
+                
+                                        </code>
+                                    </pre>
+                                </div>                                
+                        </section>
+
+                        <section>
+                            <h2>JavaScript Intro Quiz</h2>                        
+            
+                            <div class="questions_container">
+                                <h2>Question 1</h2>
+                                <div>Given the following HTML:</div>
+                                <div class="codeSection">
+                                    <h2>Question 1 HTML</h2>
+                                    <pre class="prettyprint linenums">
+                                        <code>
+&lt;div class="container"&gt;
+    &lt;input type="text" id="input1"&gt;    
+    &lt;button type="button" class="btn-sm" id="button1"&gt;Submit&lt;/button&gt;
+&lt;/div&gt;
+                                        </code>
+                                    </pre>
+                                </div>
+                                <div>Which of the following would assign a variable called: myButton to the button in the code above?</div>
+                                <div class="quiz_lesson_container">
+                                    <form class="qForm" action="">
+                                      <input type="radio" name="answer1" value="answer1first"> var myButton = document.getElementById(button1);<br>
+                                      <input type="radio" name="answer1" value="answer1second"> var myButton = document.getElementById('button1');<br>
+                                      <input type="radio" name="answer1" value="answer1third">  var myButton = document.getElementById('input1');<br>
+                                      <input type="radio" name="answer1" value="answer1fourth">  var 'myButton' = document.getElementById(button1);<br>
+                                    </form>    
+                                    <button type="button" id="submitButton1">Submit</button>
+                                </div>
+                            </div>
+
+                            <div class="questions_container">
+                                <h2>Question 2</h2>
+                                <div>In JavaScript, what is the value of 5 % 2?</div>
+                                <div class="quiz_lesson_container"> 
+                                    <input type="text" id="answer2">    
+                                    <button type="button" id="submitButton2">Submit</button>
+                                </div>
+                            </div>
+                        
+                            <div class="questions_container">
+                                <h2>Question 3</h2>
+                                <div>Given the following JavaScript Array:</div>
+                                <div class="codeSection">
+                                    <h2>Question 3 JavaScript</h2>
+                                    <pre class="prettyprint linenums">
+                                        <code>
+var fruits = [ "apple", "orange", "mango" ];
+                                        </code>
+                                    </pre>
+                                </div>
+                                <div>What is the value of fruits[1]?</div>
+                                <div class="quiz_lesson_container">
+                                    <input type="text" id="answer3">    
+                                    <button type="button" id="submitButton3">Submit</button>
+                                </div>
+                            </div>
+
+                            <div class="questions_container">                                
+                                <h2>Question 4</h2>
+                                <div>Given the following JavaScript Array:</div>
+                                <div class="codeSection">
+                                    <h2>Question 4 JavaScript</h2>
+                                    <pre class="prettyprint linenums">
+                                        <code>
+var fruits = [ "apple", "orange", "mango", "banana", "kiwi", "watermelon" ];
+                                        </code>
+                                    </pre>
+                                </div>
+                                <div>What is the value of fruits.length?</div>
+                                <div>NOTE: We didn't cover the .length method yet, but see if you can figure it out.</div>
+                                <div class="quiz_lesson_container">  
+                                    <input type="text" id="answer4">    
+                                    <button type="button" id="submitButton4"> Submit</button>
+                                </div>
+                            </div>
+                        </section>
+                    </div>
+                </div>                
+            </div>
+            <div id="right_section">
+                <div class="scoreboard test_scoreboard">
+                    <div class="sb-header">
+                        <h2>JavaScript</h2>
+                    </div>
+                    <div class="sb-level">
+                        <h4>Lesson: <span id="gameLevel">4</span></h4>
+                    </div>
+                    <div class="sb-score">
+                        <h3>Score: <span id="score">0%</span></h3>
+                    </div>
+                    <div class="sb-characters">
+                        <h3><span id="characters"></span></h3>
+                    </div>
+                    <div class="sb-instructions">
+                        <p>
+                            JavaScript Info Quiz
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+            <script>
+        /**
+         * HEADER CLASS 
+         * 
+         *  The Header for the page
+         * 
+         */
+        function Header() { 
+            this.canvasWidth = 780;
+            this.canvasHeight = 510;         
+            this.initialBackgroundImage = new Image();
+            this.initialBackgroundImage.src = "../img/js_intro.png";
+        }
+
+        /**
+         * QUIZ CLASS 
+         * 
+         *  When a quiz is initialized, it contains the values needed to run the quiz.
+         * 
+         */
+        function Quiz() {               
+            this.answer1value = null;
+            this.answer2value = null;
+            this.answer3value = null;
+            this.answer4value = null;
+            this.answer1correct = false;
+            this.answer2correct = false;
+            this.answer3correct = false;
+            this.answer4correct = false;
+            this.totalCorrect = [this.answer1correct, this.answer2correct, this.answer3correct, this.answer4correct];  
+        }
+
+        Quiz.prototype.exampBtn1 = document.getElementById('exampleButton1');
+        Quiz.prototype.submitButton1 = document.getElementById('submitButton1');
+        Quiz.prototype.submitButton2 = document.getElementById('submitButton2');
+        Quiz.prototype.submitButton3 = document.getElementById('submitButton3');
+        Quiz.prototype.submitButton4 = document.getElementById('submitButton4');
+        Quiz.prototype.scoreSpan = document.getElementById('score');
+        Quiz.prototype.characterSpan = document.getElementById('characters');
+        Quiz.prototype.correct = "<h2>Correct!</h2>";
+        Quiz.prototype.incorrect = "<h2>Try Again!</h2>";
+
+        Quiz.prototype.submitButton1.onclick = function() { 
+
+        var radios = document.getElementsByName('answer1');
+        for (var i = 0; i<radios.length; i++) {
+            if (radios[i].checked) {
+                quiz.answer1value = radios[i].value;
+                break;
+            }
+        }
+        if(quiz.answer1value == "answer1second") {
+            if(quiz.answer1correct == false) {
+                quiz.answer1correct = true;
+                quiz.totalCorrect[0] = true;
+                quiz.characterSpan.innerHTML = quiz.correct;
+                quiz.characterSpan.style.color="#006400";
+                quiz.updateSpan();  
+            } else {
+                quiz.characterSpan.innerHTML = quiz.correct;
+                quiz.characterSpan.style.color="#006400";
+                quiz.totalCorrect[0] = true;
+                quiz.updateSpan();
+            }
+        } else {
+            quiz.characterSpan.innerHTML = quiz.incorrect;
+            quiz.characterSpan.style.color="#8B0000";
+            quiz.totalCorrect[0] = false;
+            quiz.updateSpan();
+        }
+    }  
+
+        Quiz.prototype.submitButton2.onclick = function() { 
+            quiz.answer2value = document.getElementById('answer2').value;
+            if(quiz.answer2value == 1) {
+                if(quiz.answer2correct == false) {
+                    quiz.answer2correct = true;
+                    quiz.totalCorrect[1] = true;
+                    quiz.characterSpan.innerHTML = quiz.correct;
+                    quiz.characterSpan.style.color="#006400";
+                    quiz.updateSpan();  
+                } else {
+                    quiz.characterSpan.innerHTML = quiz.correct;
+                    quiz.characterSpan.style.color="#006400";
+                    quiz.totalCorrect[1] = true;
+                    quiz.updateSpan();
+                }
+            } else {
+                quiz.characterSpan.innerHTML = quiz.incorrect;
+                quiz.characterSpan.style.color="#8B0000";
+                quiz.totalCorrect[1] = false;
+                quiz.updateSpan();
+            }
+        }    
+
+        Quiz.prototype.submitButton3.onclick = function() { 
+            quiz.answer3value = document.getElementById('answer3').value;
+            console.log(quiz.answer3value);
+            if(quiz.answer3value == "orange" || quiz.answer3value == "\"orange\"") {
+                if(quiz.answer3correct == false) {
+                    quiz.answer3correct = true;
+                    quiz.totalCorrect[2] = true;
+                    quiz.characterSpan.innerHTML = quiz.correct;
+                    quiz.characterSpan.style.color="#006400";
+                    quiz.updateSpan();  
+                } else {
+                    quiz.characterSpan.innerHTML = quiz.correct;
+                    quiz.characterSpan.style.color="#006400";
+                    quiz.totalCorrect[2] = true;
+                    quiz.updateSpan();
+                }
+            } else {
+                quiz.characterSpan.innerHTML = quiz.incorrect;
+                quiz.characterSpan.style.color="#8B0000";
+                quiz.totalCorrect[2] = false;
+                quiz.updateSpan();
+            }
+        }   
+
+        Quiz.prototype.submitButton4.onclick = function() { 
+            quiz.answer4value = document.getElementById('answer4').value;
+            if(quiz.answer4value == 6) {
+                if(quiz.answer4correct == false) {
+                    quiz.answer4correct = true;
+                    quiz.totalCorrect[3] = true;
+                    quiz.characterSpan.innerHTML = quiz.correct;
+                    quiz.characterSpan.style.color="#006400";
+                    quiz.updateSpan();  
+                } else {
+                    quiz.characterSpan.innerHTML = quiz.correct;
+                    quiz.characterSpan.style.color="#006400";
+                    quiz.totalCorrect[3] = true;
+                    quiz.updateSpan();
+                }
+            } else {
+                quiz.characterSpan.innerHTML = quiz.incorrect;
+                quiz.characterSpan.style.color="#8B0000";
+                quiz.totalCorrect[3] = false;
+                quiz.updateSpan();
+            }
+        }        
+
+        Quiz.prototype.exampBtn1.onclick = function() {
+                var example1cont = document.getElementById('example1container');
+                example1cont.style.background="#ffeb38";
+                example1cont.style.border="2px solid #B80000";
+                quiz.exampBtn1.innerHTML = "Thanks!"
+        }
+
+        Quiz.prototype.updateSpan = function() {
+            var num = 0;
+            for(var i= 0; i<quiz.totalCorrect.length; i++){
+                if(quiz.totalCorrect[i]==true){
+                    num++;
+                } else {
+                    continue;
+                }
+                
+            }
+
+            switch(num) {
+                    case 1:
+                      quiz.scoreSpan.innerHTML = "25%";
+                      quiz.scoreSpan.style.color= "#8B0000";
+                      break;
+                    case 2:
+                      quiz.scoreSpan.innerHTML = "50%";
+                      quiz.scoreSpan.style.color= "#8B0000";
+                      break;
+                    case 3:
+                        quiz.scoreSpan.innerHTML = "75%";
+                        quiz.scoreSpan.style.color= "#8B0000";
+                        break;
+                    case 4:
+                        quiz.scoreSpan.innerHTML = "100%";
+                        quiz.scoreSpan.style.color= "#006400";
+                        break;
+                    default:
+                      quiz.scoreSpan.innerHTML = "0%";
+                      quiz.scoreSpan.style.color= "#8B0000";
+            }
+        }
+
+        var quiz = new Quiz();
+        var display;
+        var header = new Header();
+
+        window.onload = function () {
+            
+            // Create game canvas on page load
+            display = new Screen(header.canvasWidth, header.canvasHeight);
+            display.drawImage(header.initialBackgroundImage);
+        }      
+
+        /**
+         * CANVAS CLASS 
+         * 
+         * @param {number} width - width of canvas in pixels
+         * @param {number} height - height of canvas in pixels
+         */
+        function Screen(width, height) {
+            // create canvas and grab 2d context
+            this.canvas = document.createElement("canvas");
+            this.canvas.width = this.width = width;
+            this.canvas.height = this.height = height;
+            this.ctx = this.canvas.getContext("2d");
+            canvasContainer = document.getElementById('canvas_container');
+            // append canvas to the canvas container
+            canvasContainer.appendChild(this.canvas);
+        };
+
+        /**
+         * Draw the background image on the canvas
+         */
+        Screen.prototype.drawImage = function(image) {
+            this.ctx.drawImage(image, 0, 0);
+        };     
+
+        /**
+         * Clear the complete canvas
+         */
+        Screen.prototype.clear = function() {
+            this.ctx.clearRect(0, 0, this.width, this.height);
+        };                                       
+    </script>
+        <script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js"></script>
+    </body>
+</html>

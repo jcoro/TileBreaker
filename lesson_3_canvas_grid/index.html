@@ -2,6 +2,32 @@
 <html>
     <head>
         <meta charset="utf-8" />
+        <META NAME="author" CONTENT="john@coronite.net">
+    <!--
+  Author: John Coronite
+  Email: John@Coronite.net
+  Website: coronite.net
+  Source Files Available At: https://github.com/jcoro/TileBreaker
+  Copyrighted material used in accordance with Fair-Use exemption for education in Title 17 of the U.S. Code Section 107 http://www.copyright.gov/title17/92chap1.html#107
+  
+  ****Image Credits****
+  Character images: http://bulbapedia.bulbagarden.net
+  Background and Brick images: http://www.pokemon.com/us/
+  Copyright 2016 John Coronite
+
+  This program is free software: you can redistribute it and/or modify
+  it under the terms of the GNU General Public License as published by
+  the Free Software Foundation, either version 3 of the License, or
+  (at your option) any later version.
+
+  This program is distributed in the hope that it will be useful,
+  but WITHOUT ANY WARRANTY; without even the implied warranty of
+  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  GNU General Public License for more details.
+
+  You should have received a copy of the GNU General Public License
+  along with this program.  If not, see <http://www.gnu.org/licenses/>.
+    -->
         <link rel="stylesheet" type="text/css" href="../css/styles.css">
         <title>Lesson 3 Canvas Grid</title>
     </head>
@@ -62,46 +88,81 @@
     <script>
 
         /**
-         * GAME CLASS 
+         * HEADER CLASS 
          * 
-         *  When a game is initialized, it contains the values needed to run the game.
+         *  The Header for the page
          * 
          */
-        function Game() {
-
+        function Header() { 
             this.canvasWidth = 780;
-            this.canvasHeight = 510;
-            this.paddleWidth = 168;
-            this.paddleHeight = 20;
-            this.textColor = "#000000";
-            this.clipX = 0;
-            this.clipY = 0;
+            this.canvasHeight = 510;         
             this.initialBackgroundImage = new Image();
             this.initialBackgroundImage.src = "../img/lesson1-bg.png";
-            this.paddleImage = new Image();
-            this.paddleImage.src = "../img/paddle.png";
-            this.xValue = 0;
-            this.yValue = 0;
-            this.submitButton = document.getElementById('submitButton');
+        }
+
+        /**
+         * QUIZ CLASS 
+         * 
+         *  When a quiz is initialized, it contains the values needed to run the quiz.
+         * 
+         */
+        function Quiz(paddleWidth, paddleHeight, x, y, clipX, clipY, buttonId) {            
+            this.xValue = x;
+            this.yValue = y;
+            this.paddle = new Paddle(x, y, paddleWidth, paddleHeight, clipX, clipY);        
             this.scoreSpan = document.getElementById('score');
             this.characterSpan = document.getElementById('characters');
+            var self = this;
+            // This is called when the quiz-specific submit button is clicked:
+            this.answerSubmit = function(e) {
+                self.paddle.x = document.getElementById('xNumber').value;
+                self.paddle.y = document.getElementById('yNumber').value;
+                display.draw(self);
+                if (self.paddle.x == 306 && self.paddle.y == 490){
+                    self.textColor = "#006400";
+                    display.drawMessage("CORRECT!");
+                    self.scoreSpan.innerHTML = "100%";
+                    self.scoreSpan.style.color= "#006400";
+                    self.characterSpan.style.color= "#006400";
+                    self.characterSpan.innerHTML = "GOOD JOB!";
+
+                } else if (self.paddle.x == 306 && self.paddle.y != 490){
+                    self.textColor = "#8B0000";
+                    display.drawMessage("X VALUE IS CORRECT!");
+                    self.scoreSpan.innerHTML = "50%";
+                    self.characterSpan.innerHTML = "ALMOST THERE!"
+
+                } else if (self.paddle.x != 306 && self.paddle.y == 490){
+                    self.textColor = "#8B0000";
+                    display.drawMessage("Y VALUE IS CORRECT!");
+                    self.scoreSpan.innerHTML = "50%";
+                    self.characterSpan.innerHTML = "ALMOST THERE!"
+
+                }
+                else {
+                    self.textColor = "#8B0000";
+                    display.drawMessage("KEEP TRYING!");
+                    self.scoreSpan.innerHTML = "0%"; 
+                    self.characterSpan.innerHTML = "KEEP TRYING!"
+                }
+            }
+            document.getElementById( buttonId ).addEventListener("click", this.answerSubmit, false);
         }
-                   
-        var game = new Game();
+
+        Quiz.prototype.paddleImage = new Image();
+        Quiz.prototype.paddleImage.src = "../img/paddle.png";
+          
+        var quiz;
         var display;
-        var paddle;
+        var header = new Header();
 
         window.onload = function () {
-            
-            // Create game canvas on page load
-            display = new Screen(game.canvasWidth, game.canvasHeight);
-            display.drawImage(game.initialBackgroundImage);
-
-            // Create the paddle on page load (because it responds to all mouse movement
-            paddle = new Paddle(game.xValue, game.yValue);
-
-            display.drawPaddle();
-        }
+            // Create elements on page load
+            quiz = new Quiz(168, 20, 0, 0, 0, 0, 'submitButton');
+            display = new Screen(header.canvasWidth, header.canvasHeight);
+            display.drawImage(header.initialBackgroundImage);
+            display.drawPaddle(quiz);            
+        }         
 
 
         /**
@@ -136,71 +197,48 @@
         };    
            
 
-        Screen.prototype.drawPaddle = function() {
-            //parameters are: image, clip-x, clip-y, width of img, height of img, canvas-x, canvas-y, width of img, height of img
-            this.ctx.drawImage(game.paddleImage, paddle.clipX, paddle.clipY, paddle.width, paddle.height, paddle.x, paddle.y, paddle.width, paddle.height);
+        Screen.prototype.drawPaddle = function(g) {
+            //console.log(g);
+            this.ctx.drawImage(
+                g.paddleImage,        //image
+                g.paddle.clipX,       //clip-x
+                g.paddle.clipY,       //clip-y
+                g.paddle.width,       //width of img
+                g.paddle.height,      //height of img 
+                g.paddle.x,           //canvas-x 
+                g.paddle.y,           //canvas-y
+                g.paddle.width,       //width of img
+                g.paddle.height       //height of img
+                );
         };
 
         Screen.prototype.drawMessage = function(text) {
             display.ctx.font = "bold 45px Arial";
-            display.ctx.fillStyle = game.textColor;
+            display.ctx.fillStyle = quiz.textColor;
             var width = display.ctx.measureText(text).width
             display.ctx.fillText(text, ((display.canvas.width-width)/2), 175);
-        };         
+        };  
+
+        Screen.prototype.draw = function(quiz) {
+            this.clear();
+            this.drawImage(header.initialBackgroundImage);
+            this.drawPaddle(quiz);
+        }  
 
 
         /**
          * PADDLE CLASS 
          * 
          */
-        function Paddle(x, y) {
+        function Paddle(x, y, paddleWidth, paddleHeight, clipX, clipY) {
             this.x = x;
             this.y = y;
-            this.width = game.paddleWidth;
-            this.height = game.paddleHeight;
-            this.clipY = game.clipY;
-            this.clipX = game.clipX;
+            this.width = paddleWidth;
+            this.height = paddleHeight;
+            this.clipY = clipX;
+            this.clipX = clipY;
 
         }; 
-
-        function draw() {
-            display.clear();
-            display.drawImage(game.initialBackgroundImage);
-            display.drawPaddle();
-        }         
-
-        game.submitButton.onclick = function() {             
-            paddle.x = document.getElementById('xNumber').value;
-            paddle.y = document.getElementById('yNumber').value;
-            draw();
-            if (paddle.x == 306 && paddle.y == 490){
-                game.textColor = "#006400";
-                display.drawMessage("CORRECT!");
-                game.scoreSpan.innerHTML = "100%";
-                game.scoreSpan.style.color= "#006400";
-                game.characterSpan.style.color= "#006400";
-                game.characterSpan.innerHTML = "GOOD JOB!";
-
-            } else if (paddle.x == 306 && paddle.y != 490){
-                game.textColor = "#8B0000";
-                display.drawMessage("X VALUE IS CORRECT!");
-                game.scoreSpan.innerHTML = "50%";
-                game.characterSpan.innerHTML = "ALMOST THERE!"
-
-            } else if (paddle.x != 306 && paddle.y == 490){
-                game.textColor = "#8B0000";
-                display.drawMessage("Y VALUE IS CORRECT!");
-                game.scoreSpan.innerHTML = "50%";
-                game.characterSpan.innerHTML = "ALMOST THERE!"
-
-            }
-            else {
-                game.textColor = "#8B0000";
-                display.drawMessage("KEEP TRYING!");
-                game.scoreSpan.innerHTML = "0%"; 
-                game.characterSpan.innerHTML = "KEEP TRYING!"
-            }
-        }
      
     </script>
 </html>

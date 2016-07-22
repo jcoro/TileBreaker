@@ -1,12 +1,42 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <link rel="stylesheet" type="text/css" href="../css/styles.css">
         <meta charset="utf-8" />
-        <title>Lesson 4 For Loops</title>
+        <META NAME="author" CONTENT="john@coronite.net">
+    <!--
+  Author: John Coronite
+  Email: John@Coronite.net
+  Website: coronite.net
+  Source Files Available At: https://github.com/jcoro/TileBreaker
+  Copyrighted material used in accordance with Fair-Use exemption for education in Title 17 of the U.S. Code Section 107 http://www.copyright.gov/title17/92chap1.html#107
+  
+  ****Image Credits****
+  Character images: http://bulbapedia.bulbagarden.net
+  Background and Brick images: http://www.pokemon.com/us/
+  Copyright 2016 John Coronite
+
+  This program is free software: you can redistribute it and/or modify
+  it under the terms of the GNU General Public License as published by
+  the Free Software Foundation, either version 3 of the License, or
+  (at your option) any later version.
+
+  This program is distributed in the hope that it will be useful,
+  but WITHOUT ANY WARRANTY; without even the implied warranty of
+  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  GNU General Public License for more details.
+
+  You should have received a copy of the GNU General Public License
+  along with this program.  If not, see <http://www.gnu.org/licenses/>.
+    -->
+        <link rel="stylesheet" type="text/css" href="../css/styles.css">
+        <title>Tile Breaker - Final Game</title>
+
     </head>
     <body>
         <div class="main_wrapper">
+            <div class="title">
+                <h1>Tile Breaker</h1>
+            </div>
             <div id="left_section">
                 <div id="canvas_container">
                 </div>
@@ -22,128 +52,6 @@
                             <button type="button" id="newGameButton" class="myStartButton">New Game</button>
                         </div>
                     </div>
-                    <div class="instructions">
-                        <p>In this lesson we'll code the "For Loop" to create the characters for our game.</p>
-                        <p>To create our "For Loop", we'll use:</p>
-                        <p>Statements</p>
-                        <p>Variables</p>
-                        <p>Arrays</p>
-                        <p>Functions and Function Arguments</p>
-                          <div class="codeSection">
-                            <h2>File: TileBreaker/lesson_2_for_loops/code_change.html</h2>
-                                <pre class="prettyprint linenums:377"><code>Game.prototype.createInitialCharactersArray = function() {
-
-            var gameCharacters = 
-                [
-                    {
-                        image: '../img/bulbasaur.png',
-                        onScreen : 1,
-                        name : "bulbasaur"
-                    },
-                    {
-                        image : '../img/chikorita.png',
-                        onScreen : 1,
-                        name : "chikorita"
-                    },
-                    {
-                        image : '../img/tangela.png',
-                        onScreen : 1,
-                        name : "tangela"
-                    },
-                    {
-                        image : '../img/cubchoo.png',
-                        onScreen : 2,
-                        name : "cubchoo"
-                    },
-                    {
-                        image : '../img/regice.png',
-                        onScreen : 2,
-                        name : "regice"
-                    },
-                    {
-                        image : '../img/glaceon.png',
-                        onScreen : 2,
-                        name : "glaceon"
-                    },
-                    {
-                        image : '../img/charmander.png',
-                        onScreen : 3,
-                        name : "charmander"
-                    },
-                    {
-                        image : '../img/ponyta.png',
-                        onScreen : 3,
-                        name : "ponyta"
-                    },
-                    {
-                        image : '../img/slugma.png',
-                        onScreen : 3,
-                        name : "slugma"
-                    },
-                    {
-                        image : '../img/squirtle.png',
-                        onScreen : 4,
-                        name : "squirtle"
-                    },
-                    {
-                        image : '../img/golduck.png',
-                        onScreen : 4,
-                        name : "golduck"
-                    },
-                    {
-                        image : '../img/poliwhirl.png',
-                        onScreen : 4,
-                        name : "poliwhirl"
-                    },
-                    {
-                        image : '../img/nosepass.png',
-                        onScreen : 5,
-                        name : "nosepass"
-                    },
-                    {
-                        image : '../img/regirock.png',
-                        onScreen : 5,
-                        name : "regirock"
-                    },
-                    {
-                        image : '../img/gigalith.png',
-                        onScreen : 5,
-                        name : "gigalith"
-                    }
-
-                ];
-
-                var characterArray = [];
-
-    //***   The for loop goes below
-    //***   Remember, the for loop has the following syntax:
-    //***
-    //***     for (Statement 1; Statement 2; Statement 3) {
-    //***         code block to be executed
-    //***     }
-    //***
-    //***   Statement 1 is executed before the loop (the code block) starts.
-    //***   Statement 2 defines the condition for running the loop (the code block).
-    //***   Statement 3 is executed each time after the loop (the code block) has been executed.
-    //***
-    //***   FOR EXAMPLE:
-    //***
-    //***     for (i = 0; i &lt; 5; i++) {
-    //***         console.log("The number is " + i);
-    //***     }
-    //***
-    //***
-    //***     REMEMBER: Inside the loop, The syntax for creating a new Character is:
-    //***
-    //***     something = new Character(1, image, onScreen, name);
-    //***
-
-                return characterArray;       
-            };
-                          </code>
-                        </pre>
-                      </div>
-                  </div>
                 </div>                
             </div>
             <div id="right_section">
@@ -162,7 +70,8 @@
                     </div>
                     <div class="sb-instructions">
                         <p>
-                            Our game is functional, but it needs work! First, we need to create and display our characters.
+                            Capture all 15 characters in 5 different worlds.
+                            Hint: Try to capture the characters before you break all of the tiles - or you'll need to go through each world to find them again!
                         </p>
                     </div>
                 </div>
@@ -179,33 +88,14 @@
          */
         function Game() {
 
-            this.dx = 3;
-            this.dy = -3;
             this.brickRows = 3;
             this.brickColumns = 9;
-            this.canvasWidth = 780;
-            this.canvasHeight = 510;
             this.paddleWidth = 168;
             this.paddleHeight = 20;
-            this.ballWidth = 22;
-            this.textColor = "#000000";
-
+            this.textColor = "#FFFFFF";
             this.brickImage = new Image();
-            this.brickImage.src = "../img/grass.png";
-
             this.canvasImage = new Image();
-            this.canvasImage.src = "../img/grass-bg.png";
-
-            this.initialBackgroundImage = new Image();
-            this.initialBackgroundImage.src = "../img/initial-bg.png";
-
-            this.winnerImage = new Image ();
-            this.winnerImage.src = "../img/winner-bg.png";
-            this.ballImage = new Image();
-            this.ballImage.src = "../img/pokeball.png";
-            this.paddleImage = new Image();
-            this.paddleImage.src = "../img/paddle.png"; 
-            this.ballImageX = 0; // The ball image has 36 frames - this variable is updated for animations
+            this.ballImageX = 0; // The ball image has 36 frames - this variable is updated to produce animations
             this.rightPressed = false;
             this.leftPressed = false;
             this.score = 0;
@@ -217,13 +107,31 @@
             this.screenView = 1;
             this.levelFinished = false;
             this.winner = false;
-            this.nextLevelButton = document.getElementById('nextLevelButton');
-            this.newGameButton = document.getElementById('newGameButton');
-            this.continueButton = document.getElementById('continueButton');
-            this.levelDiv = document.getElementById('gameLevel'); 
-            this.scoreSpan = document.getElementById('score');
-            this.characterSpan = document.getElementById('characters'); 
+            this.characters = this.createInitialCharactersArray();
+            this.bricks = null;
+            this.ball = null;
+            this.paddle = null;            
         }
+
+            // Game values which don't change during the course of the game:
+
+            Game.prototype.canvasWidth = 780;
+            Game.prototype.canvasHeight = 510;
+            Game.prototype.ballWidth = 22;
+            Game.prototype.ballImage = new Image();
+            Game.prototype.initialBackgroundImage = new Image();
+            Game.prototype.paddleImage = new Image();
+            Game.prototype.winnerImage = new Image ();
+            Game.prototype.ballImage.src = "../img/pokeball.png"            
+            Game.prototype.initialBackgroundImage.src = "../img/initial-bg.png";
+            Game.prototype.paddleImage.src = "../img/paddle.png";
+            Game.prototype.winnerImage.src = "../img/winner-bg.png";
+            Game.prototype.nextLevelButton = document.getElementById('nextLevelButton');
+            Game.prototype.newGameButton = document.getElementById('newGameButton');
+            Game.prototype.continueButton = document.getElementById('continueButton');
+            Game.prototype.levelDiv = document.getElementById('gameLevel'); 
+            Game.prototype.scoreSpan = document.getElementById('score');
+            Game.prototype.characterSpan = document.getElementById('characters');
 
             Game.prototype.createInitialCharactersArray = function() {
 
@@ -308,31 +216,11 @@
                 ];
 
                 var characterArray = [];
+                for (i=0; i < gameCharacters.length; i++){
+                    characterArray[i] = new Character(1, gameCharacters[i].image, gameCharacters[i].onScreen, gameCharacters[i].name )
+                };
 
-                //*** The for loop goes below
-                //*** Remember, the for loop has the following syntax:
-                //***
-                //***   for (Statement 1; Statement 2; Statement 3) {
-                //***       code block to be executed
-                //***   }
-                //***
-                //*** Statement 1 is executed before the loop (the code block) starts.
-                //*** Statement 2 defines the condition for running the loop (the code block).
-                //*** Statement 3 is executed each time after the loop (the code block) has been executed.
-                //***
-                //*** FOR EXAMPLE:
-                //***
-                //***   for (i = 0; i < 5; i++) {
-                //***       console.log("The number is " + i);
-                //***   }
-                //***
-                //***
-                //***     REMEMBER: Inside the loop, the syntax for creating a new Character is:
-                //***
-                //***     something = new Character(1, image, onScreen, name);
-                //***
-
-                return characterArray;       
+                    return characterArray;       
             }; 
 
             Game.prototype.createBricksArray = function() {
@@ -349,10 +237,10 @@
             Game.prototype.collisionDetection = function() {
                 for(c=0; c<this.brickRows; c++) {
                     for(r=0; r<this.brickColumns; r++) {
-                        var b = bricks[c][r];
+                        var b = game.bricks[c][r];
                         if(b.status == 1) {
-                            if((ball.x+ball.width) > b.x && (ball.x-ball.width) < b.x+b.width && (ball.y+ball.width) > b.y && (ball.y-ball.width) < b.y+b.height) {
-                                this.dy = -this.dy;
+                            if((this.ball.x+this.ball.width) > b.x && (this.ball.x-this.ball.width) < b.x+b.width && (this.ball.y+this.ball.width) > b.y && (this.ball.y-this.ball.width) < b.y+b.height) {
+                                this.ball.dy = -this.ball.dy;
                                 b.status = 0;
                                 this.score++;
                                 game.scoreSpan.innerHTML = this.score;
@@ -367,47 +255,42 @@
             }
 
             Game.prototype.collisionDetectionCharacters = function() {
-                for(c=0; c<characters.length; c++) {
-                    var charac = characters[c];
+                for(c=0; c<this.characters.length; c++) {
+                    var charac = this.characters[c];
                     if(charac.status == 1 && charac.captured == false && charac.showScreen == game.screenView) {
-                        if((ball.x+ball.width) > charac.x && (ball.x-ball.width) < charac.x+charac.width && (ball.y+ball.width) > charac.y && (ball.y-ball.width) < charac.y+charac.height) {
-                            this.dy = -this.dy;
+                        if((this.ball.x+this.ball.width) > charac.x && (this.ball.x-this.ball.width) < charac.x+charac.width && (this.ball.y+this.ball.width) > charac.y && (this.ball.y-this.ball.width) < charac.y+charac.height) {
+                            this.ball.dy = -this.ball.dy;
                             charac.status = 0;
                             charac.captured = true;
                             this.characterScore++;
                             this.characterSpan.innerHTML = this.characterScore;
-                            if(this.characterScore == characters.length){
+                            if(this.characterScore == this.characters.length){
                                 this.winner = true;
                             }
                         }
                     }                    
                 }
-            }                       
+            }  
+
+            Game.prototype.createRandomX = function(){
+                return (Math.abs((Math.round(Math.random() * this.canvasWidth)) - (3 * this.ballWidth)));
+            };                                 
                            
         var game = new Game();
-        var bricks = game.createBricksArray();
-        var characters = game.createInitialCharactersArray();
+
         
         /**
          * GAME OBJECTS
          */
-        var ball;
+
         var display;
-        var paddle;
 
         window.onload = function () {
             
-            // Create game canvas on page load
+        // Create game canvas on page load
             display = new Screen(game.canvasWidth, game.canvasHeight);
-            display.drawImage(game.initialBackgroundImage);
-
-            // Create the paddle on page load (because it responds to all mouse movement
-            paddle = new Paddle( game.canvasWidth, game.canvasHeight, game.paddleWidth, game.paddleHeight, 0, 0 );
+            display.drawImage(game.initialBackgroundImage);  
         }
-                   
-        document.addEventListener("keydown", keyDownHandler, false);
-        document.addEventListener("keyup", keyUpHandler, false);
-        document.addEventListener("mousemove", mouseMoveHandler, false);
 
 
         /**
@@ -446,7 +329,7 @@
          */
         Screen.prototype.drawBall = function(image) {
             //parameters are: image, clip-x, clip-y, width of img, height of img, canvas-x, canvas-y, width of img, height of img
-            this.ctx.drawImage(image, game.ballImageX, 0, 22, 22, ball.x, ball.y, 22, 22);
+            this.ctx.drawImage(image, game.ballImageX, 0, 22, 22, game.ball.x, game.ball.y, 22, 22);
             if (game.ballImageX < 770){
                game.ballImageX = game.ballImageX + 22; 
             } else {
@@ -460,12 +343,12 @@
         Screen.prototype.drawBricks = function() {
             for(c=0; c<game.brickRows; c++) {
                 for(r=0; r<game.brickColumns; r++) {
-                    if(bricks[c][r].status == 1) {                    
-                        var brickX = (r*(bricks[c][r].width+bricks[c][r].padding))+bricks[c][r].offsetLeft;
-                        var brickY = (c*(bricks[c][r].height+bricks[c][r].padding))+bricks[c][r].offsetTop;
-                        bricks[c][r].x = brickX;
-                        bricks[c][r].y = brickY;
-                        display.ctx.drawImage(bricks[c][r].image, brickX, brickY)
+                    if(game.bricks[c][r].status == 1) {                    
+                        var brickX = (r*(game.bricks[c][r].width+game.bricks[c][r].padding))+game.bricks[c][r].offsetLeft;
+                        var brickY = (c*(game.bricks[c][r].height+game.bricks[c][r].padding))+game.bricks[c][r].offsetTop;
+                        game.bricks[c][r].x = brickX;
+                        game.bricks[c][r].y = brickY;
+                        display.ctx.drawImage(game.bricks[c][r].image, brickX, brickY)
                     }
                 }
             }  
@@ -476,31 +359,40 @@
          */        
         Screen.prototype.drawCharacters = function() {
             var counter = 0;
-            for(c=0; c<characters.length; c++) {   
-                if (characters[c].status == 1 && characters[c].captured == false && characters[c].showScreen == game.screenView) {  
-                    if(!characters[c].position){
-                        var characterX = (counter*(display.width/3)+((display.width/3)-(characters[c].width))/2);
+            for(c=0; c<game.characters.length; c++) {   
+                if (game.characters[c].status == 1 && game.characters[c].captured == false && game.characters[c].showScreen == game.screenView) {  
+                    if(!game.characters[c].position){
+                        var characterX = (counter*(display.width/3)+((display.width/3)-(game.characters[c].width))/2);
                     } else {
-                        characterX = characters[c].position;
+                        characterX = game.characters[c].position;
                     }
-                        var characterY = characters[c].padding+characters[c].offsetTop;
-                        characters[c].x = characterX;
-                        characters[c].y = characterY;
+                        var characterY = game.characters[c].padding+game.characters[c].offsetTop;
+                        game.characters[c].x = characterX;
+                        game.characters[c].y = characterY;
 
                         var img = new Image();
-                        img.src = characters[c].image;
+                        img.src = game.characters[c].image;
                         display.ctx.drawImage(img, characterX, characterY);
                         counter++;
-                        characters[c].position = characterX;
+                        game.characters[c].position = characterX;
                 }
             }  
         };            
 
         Screen.prototype.drawPaddle = function() {
             //parameters are: image, clip-x, clip-y, width of img, height of img, canvas-x, canvas-y, width of img, height of img
-            this.ctx.drawImage(game.paddleImage, paddle.clipX, paddle.clipY, paddle.width, paddle.height, paddle.x, paddle.y, paddle.width, paddle.height);
+            this.ctx.drawImage(
+                game.paddleImage,             
+                game.paddle.clipX,
+                game.paddle.clipY,
+                game.paddle.width,
+                game.paddle.height,
+                game.paddle.x,
+                game.paddle.y,
+                game.paddle.width,
+                game.paddle.height
+            );
         };
-
 
         Screen.prototype.drawScore = function() {
             display.ctx.font = "16px Arial";
@@ -521,6 +413,7 @@
             display.ctx.fillText(text, ((display.canvas.width-width)/2), display.canvas.height/2);
         };         
 
+
         /**
          * BALL CLASS 
          * 
@@ -528,10 +421,13 @@
          * @param {number} positionY - y Position of the ball image (at its upper-left)
          * @param {number} width - Width of the ball image
          */
+
         function Ball(positionX, positionY, width) {
             this.x = positionX;
             this.y = positionY;
             this.width = width;
+            this.dx = 3;
+            this.dy = -3;
         };
 
 
@@ -542,28 +438,57 @@
          * @param {number} canvasHeight - the canvas height
          * @param {number} width - the width of the paddle
          * @param {number} height - the height of the paddle
+         * @param {number} clipY - how much of the Y value to clip (from the top)
+         * @param {number} clipX - how much of the X value to clip (from the left)
          */
         function Paddle(canvasWidth, canvasHeight, width, height, clipY, clipX) {
-            this.x = canvasWidth/2;
+            this.x = (canvasWidth/2) - (width/2);
             this.y = canvasHeight - height;
             this.width = width;
             this.height = height;
             this.clipY = clipY;
             this.clipX = clipX;
-        };    
+        };  
+
+        // Perform this when the mouse moves
+        Paddle.prototype.mouseMoveHandler = function(e) {
+            var relativeX = e.clientX - display.canvas.offsetLeft;
+            if(relativeX > 0 && relativeX < game.canvasWidth) {
+                game.paddle.x = relativeX - (game.paddle.width)/2;                
+            } 
+        } 
+
+        // Perform this when the left arrow is pressed
+        Paddle.prototype.keyDownHandler = function(e) {
+            if(e.keyCode == 39) {
+                game.rightPressed = true;
+            }
+            else if(e.keyCode == 37) {
+                game.leftPressed = true;
+            }
+        };
+
+        // Perform this when the right arrow is pressed
+        Paddle.prototype.keyUpHandler = function(e) {
+            if(e.keyCode == 39) {
+                game.rightPressed = false;
+            }
+            else if(e.keyCode == 37) {
+                game.leftPressed = false;
+            }
+        }        
 
 
         /**
          * BRICK CLASS 
          * 
          * @param {number} status - the status of the brick, 1 means draw it, 0 means don't
-         * @param {number} x - the x value of the brick (upper-left corner)
-         * @param {number} y - the y value of the brick (upper-left corner)
+         *   
          */
         function Brick(status) {
             this.status = status;
-            this.x = 0;
-            this.y = 0;
+            this.x = null;
+            this.y = null;
         }; 
 
         Brick.prototype.width = 66;
@@ -577,15 +502,17 @@
         /**
          * CHARACTER CLASS 
          * 
-         * @param {string} name - the name of the Character
          * @param {number} status - the status of the Character, 1 means draw it, 0 means don't
+         * @param {string} image - a reference to the image
+         * @param {number} screenNumber - a number indicating on which screen the image is to be displayed 
+         * @param {string} name - the name of the Character
          * @param {number} x - the x value of the Character (upper-left corner)
          * @param {number} y - the y value of the Character (upper-left corner)
          */
-        function Character(status, image, scrn, name) {
+        function Character(status, image, screenNumber, name) {
             this.status = status;
             this.image = image;
-            this.showScreen = scrn;
+            this.showScreen = screenNumber;
             this.name = name;
             this.captured = false;
             this.position = null;
@@ -605,35 +532,80 @@
         *
         */      
 
-        function createRandomX(){
-            return (Math.abs((Math.round(Math.random() * display.canvas.width)) - (3 * game.ballWidth)));
-        };
-        
-        function keyDownHandler(e) {
-            if(e.keyCode == 39) {
-                game.rightPressed = true;
-            }
-            else if(e.keyCode == 37) {
-                game.leftPressed = true;
-            }
-        };
+        function levelChanges() {
+            if (game.level == 1) {
+                // these are the values for LEVEL 1 - We don't need to change these.
+                game.brickRows = 3;
+                game.ball.dx = 3;
+                game.ball.dy = -3;
 
-        function keyUpHandler(e) {
-            if(e.keyCode == 39) {
-                game.rightPressed = false;
+            } else if (game.level == 2) {
+                // ADD a ROW of BRICKS on LEVEL 2
+                game.brickRows = 4;
+                // Make the BALL move FASTER on LEVEL 2
+                game.ball.dx = 6;
+                game.ball.dy = -6;
+
+            } else if (game.level == 3){                
+                game.ball.dx = 6;
+                game.ball.dy = -6;
+
+                //make the PADDLE SMALLER on level 3
+                game.paddle.width = 104;
+                game.paddle.clipY = 20;
+                game.paddle.clipX = 32;
+
+            } else if (game.level == 4) {
+                game.ball.dx = 6;
+                game.ball.dy = -6;
+
+                //make the PADDLE EVEN SMALLER on level 4
+                game.paddle.width = 72;
+                game.paddle.clipY = 40;
+                game.paddle.clipX = 48;
+
+            } else {
+                // For all levels ABOVE LEVEL 4, Make the BALL move EVEN FASTER
+                game.ball.dx = 7
+                game.ball.dy = -7;       
             }
-            else if(e.keyCode == 37) {
-                game.leftPressed = false;
+
+        }        
+
+        function screenChanges() {
+            switch(game.screenView) {
+                case 1:
+                    game.brickImage.src="../img/grass.png"; 
+                    game.canvasImage.src = "../img/grass-bg.png";
+                    game.textColor = "#000000";
+                    break;
+                case 2:
+                    game.brickImage.src="../img/ice.png"; 
+                    game.canvasImage.src = "../img/ice-bg.png";
+                    game.textColor = "#000000";
+                    break;
+                case 3:
+                    game.brickImage.src="../img/fire.png"; 
+                    game.canvasImage.src = "../img/fire-bg.png";
+                    game.textColor = "#FFFFFF";
+                    break; 
+                case 4:
+                    game.brickImage.src="../img/water.png"; 
+                    game.canvasImage.src = "../img/beach-bg.png";
+                    game.textColor = "#000000";
+                    break;  
+                case 5:
+                    game.brickImage.src="../img/rock.png"; 
+                    game.canvasImage.src = "../img/cave-bg.png";
+                    game.textColor = "#FFFFFF";
+                    break;                                                           
+                default:
+                    game.brickImage.src="../img/grass.png"; 
+                    game.canvasImage.src = "../img/grass-bg.png";
+                    game.textColor = "#000000";
+
             }
         }
-
-        function mouseMoveHandler(e) {
-            var relativeX = e.clientX - display.canvas.offsetLeft;
-            if(relativeX > 0 && relativeX < display.canvas.width) {
-                paddle.x = relativeX - (paddle.width)/2;
-            }
-        }      
-
         
 
         /**
@@ -651,16 +623,22 @@
             game.levelFinished = false;
             game.winner = false;
             game.levelDiv.innerHTML = game.level.toString(); 
-            ball = new Ball( createRandomX(), display.canvas.height-game.paddleHeight-game.ballWidth, game.ballWidth);   
-            paddle = new Paddle( game.canvasWidth, game.canvasHeight, game.paddleWidth, game.paddleHeight, 0, 0 );
-            bricks = game.createBricksArray();
-            characters = game.createInitialCharactersArray();
+            game.ball = new Ball( game.createRandomX(), game.canvasHeight-game.paddleHeight-game.ballWidth, game.ballWidth);  
+            levelChanges();
+            screenChanges();
+            game.paddle = new Paddle( game.canvasWidth, game.canvasHeight, game.paddleWidth, game.paddleHeight, 0, 0 );
+            document.addEventListener("mousemove", game.paddle.mouseMoveHandler, false); 
+            document.addEventListener("keydown", game.paddle.keyDownHandler, false);
+            document.addEventListener("keyup", game.paddle.keyUpHandler, false);             
+            game.bricks = game.createBricksArray();
+            game.characters = game.createInitialCharactersArray();
             draw();            
         }
 
         function initContinueGame() {
             game.continueButton.style = "display:none";
-            ball = new Ball( createRandomX(), display.canvas.height-game.paddleHeight-game.ballWidth, game.ballWidth); 
+            game.ball = new Ball( game.createRandomX(), game.canvasHeight-game.paddleHeight-game.ballWidth, game.ballWidth); 
+            levelChanges();
             draw();
         }
 
@@ -677,8 +655,10 @@
             game.levelFinished = false;            
             game.bricksDestroyed = 0;
             display.drawBricks(); 
-            ball = new Ball( createRandomX(), display.canvas.height-game.paddleHeight-game.ballWidth, game.ballWidth);            
-            bricks = game.createBricksArray();
+            game.ball = new Ball( game.createRandomX(), game.canvasHeight-game.paddleHeight-game.ballWidth, game.ballWidth);            
+            levelChanges();
+            screenChanges();
+            game.bricks = game.createBricksArray();
             display.drawCharacters();
             draw();
         }   
@@ -704,18 +684,18 @@
                 game.collisionDetection(); 
                 game.collisionDetectionCharacters();
                 // Bounce ball off the left or right of the canvas
-                if(ball.x + game.dx > display.canvas.width-ball.width || ball.x + game.dx < 0) {
-                    game.dx = -game.dx;
+                if(game.ball.x + game.ball.dx > display.canvas.width-game.ball.width || game.ball.x + game.ball.dx < 0) {
+                    game.ball.dx = -game.ball.dx;
                 }
                 // Bounce ball off the top of the canvas
-                if(ball.y + game.dy < 0) {
-                    game.dy = -game.dy;
+                if(game.ball.y + game.ball.dy < 0) {
+                    game.ball.dy = -game.ball.dy;
                 }
                 // If the edge of the ball is past the edge of the paddle...
-                else if((ball.y+ball.width) + game.dy > display.canvas.height-paddle.height) {
+                else if((game.ball.y+game.ball.width) + game.ball.dy > display.canvas.height-game.paddle.height) {
                     // This if statement tests if the ball hits the paddle
-                    if(ball.x > (paddle.x-ball.width) && ball.x < (paddle.x + paddle.width+ball.width)) {
-                        game.dy = -game.dy;
+                    if(game.ball.x > (game.paddle.x-game.ball.width) && game.ball.x < (game.paddle.x + game.paddle.width+game.ball.width)) {
+                        game.ball.dy = -game.ball.dy;
                     }
                     else {
                         game.lives--;
@@ -728,14 +708,14 @@
                         }
                     }
                 }
-                if(game.rightPressed && paddle.x < display.canvas.width-paddle.width) {
-                    paddle.x += 7;
+                if(game.rightPressed && game.paddle.x < display.canvas.width-game.paddle.width) {
+                    game.paddle.x += 14;
                 }
-                else if(game.leftPressed && paddle.x > 0) {
-                    paddle.x -= 7;
+                else if(game.leftPressed && game.paddle.x > 0) {
+                    game.paddle.x -= 14;
                 }
-                ball.x += game.dx;
-                ball.y += game.dy;
+                game.ball.x += game.ball.dx;
+                game.ball.y += game.ball.dy;
                 requestAnimationFrame(draw);
             } else {
                 if (game.gameOver){
@@ -780,5 +760,4 @@
             initNewGame();
         }      
     </script>
-    <script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js"></script>
 </html>

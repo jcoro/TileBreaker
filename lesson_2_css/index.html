@@ -2,6 +2,32 @@
 <html>
     <head>
         <meta charset="utf-8" />
+        <META NAME="author" CONTENT="john@coronite.net">
+    <!--
+  Author: John Coronite
+  Email: John@Coronite.net
+  Website: coronite.net
+  Source Files Available At: https://github.com/jcoro/TileBreaker
+  Copyrighted material used in accordance with Fair-Use exemption for education in Title 17 of the U.S. Code Section 107 http://www.copyright.gov/title17/92chap1.html#107
+  
+  ****Image Credits****
+  Character images: http://bulbapedia.bulbagarden.net
+  Background and Brick images: http://www.pokemon.com/us/
+  Copyright 2016 John Coronite
+
+  This program is free software: you can redistribute it and/or modify
+  it under the terms of the GNU General Public License as published by
+  the Free Software Foundation, either version 3 of the License, or
+  (at your option) any later version.
+
+  This program is distributed in the hope that it will be useful,
+  but WITHOUT ANY WARRANTY; without even the implied warranty of
+  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  GNU General Public License for more details.
+
+  You should have received a copy of the GNU General Public License
+  along with this program.  If not, see <http://www.gnu.org/licenses/>.
+    -->
         <link rel="stylesheet" type="text/css" href="../css/styles.css">
         <title>Lesson 2 CSS</title>
     </head>
@@ -191,7 +217,7 @@
             this.answer2correct = false;
             this.answer3correct = false;
             this.answer4correct = false;
-            this.totalCorrect = 0;
+            this.totalCorrect = [this.answer1correct, this.answer2correct, this.answer3correct, this.answer4correct];
             this.scoreSpan = document.getElementById('score');
             this.characterSpan = document.getElementById('characters');
             this.correct = "<h2>Correct!</h2>";
@@ -199,74 +225,132 @@
         }
 
         Quiz.prototype.updateSpan = function() {
-                switch(quiz.totalCorrect) {
-                        case 1:
-                          quiz.scoreSpan.innerHTML = "25%";
-                          break;
-                        case 2:
-                          quiz.scoreSpan.innerHTML = "50%";
-                          break;
+            console.log(quiz.totalCorrect);
+            var num = 0;
+            for(var i= 0; i<quiz.totalCorrect.length; i++){
+                if(quiz.totalCorrect[i]==true){
+                    num++;
+                } else {
+                    continue;
+                }
+                
+            }
+
+            switch(num) {
+                    case 1:
+                      quiz.scoreSpan.innerHTML = "25%";
+                      quiz.scoreSpan.style.color= "#8B0000";
+                      break;
+                    case 2:
+                      quiz.scoreSpan.innerHTML = "50%";
+                      quiz.scoreSpan.style.color= "#8B0000";
+                      break;
                     case 3:
                         quiz.scoreSpan.innerHTML = "75%";
+                        quiz.scoreSpan.style.color= "#8B0000";
                         break;
                     case 4:
                         quiz.scoreSpan.innerHTML = "100%";
                         quiz.scoreSpan.style.color= "#006400";
                         break;
-                        default:
-                          quiz.scoreSpan.innerHTML = "0%";
-                    }
+                    default:
+                      quiz.scoreSpan.innerHTML = "0%";
+                      quiz.scoreSpan.style.color= "#8B0000";
+                }
         }
         var quiz = new Quiz();
 
         quiz.submitButton1.onclick = function() { 
             quiz.answer1value = document.getElementById('answer1').value;
             if(quiz.answer1value == "#4682B4" || quiz.answer1value == "#4682b4") {
-                quiz.answer1correct = true;
-                quiz.characterSpan.innerHTML = quiz.correct;
-                quiz.characterSpan.style.color= "#006400";
-                quiz.totalCorrect++;
-                quiz.updateSpan();
+                if(quiz.answer1correct == false) {
+                    quiz.answer1correct = true;
+                    quiz.totalCorrect[0] = true;
+                    quiz.characterSpan.innerHTML = quiz.correct;
+                    quiz.characterSpan.style.color="#006400";
+                    quiz.updateSpan();  
+                } else {
+                    quiz.characterSpan.innerHTML = quiz.correct;
+                    quiz.characterSpan.style.color="#006400";
+                    quiz.totalCorrect[0] = true;
+                    quiz.updateSpan();
+                }
             } else {
                 quiz.characterSpan.innerHTML = quiz.incorrect;
+                quiz.characterSpan.style.color="#8B0000";
+                quiz.totalCorrect[0] = false;
+                quiz.updateSpan();
             }
         }
 
         quiz.submitButton2.onclick = function() { 
             quiz.answer2value = document.getElementById('answer2').value;
             if(quiz.answer2value == "border-radius") {
-                quiz.answer2correct = true;
-                quiz.characterSpan.innerHTML = quiz.correct;
-                quiz.totalCorrect++;
-                quiz.updateSpan();
+                if(quiz.answer2correct == false) {
+                    quiz.answer2correct = true;
+                    quiz.totalCorrect[1] = true;
+                    quiz.characterSpan.innerHTML = quiz.correct;
+                    quiz.characterSpan.style.color="#006400";
+                    quiz.updateSpan();  
+                } else {
+                    quiz.characterSpan.innerHTML = quiz.correct;
+                    quiz.characterSpan.style.color="#006400";
+                    quiz.totalCorrect[1] = true;
+                    quiz.updateSpan();
+                }
             } else {
                 quiz.characterSpan.innerHTML = quiz.incorrect;
+                quiz.characterSpan.style.color="#8B0000";
+                quiz.totalCorrect[1] = false;
+                quiz.updateSpan();
             }
         }    
 
         quiz.submitButton3.onclick = function() { 
             quiz.answer3value = document.getElementById('answer3').value;
             if(quiz.answer3value == "800px" || quiz.answer3value == "800 px") {
-                quiz.answer3correct = true;
-                quiz.characterSpan.innerHTML = quiz.correct;
-                quiz.totalCorrect++;
-                quiz.updateSpan();
+                if(quiz.answer3correct == false) {
+                    quiz.answer3correct = true;
+                    quiz.totalCorrect[2] = true;
+                    quiz.characterSpan.innerHTML = quiz.correct;
+                    quiz.characterSpan.style.color="#006400";
+                    quiz.updateSpan();  
+                } else {
+                    quiz.characterSpan.innerHTML = quiz.correct;
+                    quiz.characterSpan.style.color="#006400";
+                    quiz.totalCorrect[2] = true;
+                    quiz.updateSpan();
+                }
             } else {
                 quiz.characterSpan.innerHTML = quiz.incorrect;
+                quiz.characterSpan.style.color="#8B0000";
+                quiz.totalCorrect[2] = false;
+                quiz.updateSpan();
             }
         }   
 
         quiz.submitButton4.onclick = function() { 
             quiz.answer4value = document.getElementById('answer4').value;
             if(quiz.answer4value == "#cssSlide3") {
-                quiz.answer4correct = true;
-                quiz.characterSpan.innerHTML = quiz.correct;
-                quiz.totalCorrect++;
-                quiz.updateSpan();
+                if(quiz.answer4correct == false) {
+                    quiz.answer4correct = true;
+                    quiz.totalCorrect[3] = true;
+                    quiz.characterSpan.innerHTML = quiz.correct;
+                    quiz.characterSpan.style.color="#006400";
+                    quiz.updateSpan();  
+                } else {
+                    quiz.characterSpan.innerHTML = quiz.correct;
+                    quiz.characterSpan.style.color="#006400";
+                    quiz.totalCorrect[3] = true;
+                    quiz.updateSpan();
+                }
             } else {
                 quiz.characterSpan.innerHTML = quiz.incorrect;
+                quiz.characterSpan.style.color="#8B0000";
+                quiz.totalCorrect[3] = false;
+                quiz.updateSpan();
             }
-        }  
+        } 
 
         game.panel1Button.onclick = function() {
             display.clear;

@@ -1,6 +1,32 @@
 <!DOCTYPE html>
 <html>
   <head>
+        <META NAME="author" CONTENT="john@coronite.net">
+    <!--
+  Author: John Coronite
+  Email: John@Coronite.net
+  Website: coronite.net
+  Source Files Available At: https://github.com/jcoro/TileBreaker
+  Copyrighted material used in accordance with Fair-Use exemption for education in Title 17 of the U.S. Code Section 107 http://www.copyright.gov/title17/92chap1.html#107
+  
+  ****Image Credits****
+  Character images: http://bulbapedia.bulbagarden.net
+  Background and Brick images: http://www.pokemon.com/us/
+  Copyright 2016 John Coronite
+
+  This program is free software: you can redistribute it and/or modify
+  it under the terms of the GNU General Public License as published by
+  the Free Software Foundation, either version 3 of the License, or
+  (at your option) any later version.
+
+  This program is distributed in the hope that it will be useful,
+  but WITHOUT ANY WARRANTY; without even the implied warranty of
+  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  GNU General Public License for more details.
+
+  You should have received a copy of the GNU General Public License
+  along with this program.  If not, see <http://www.gnu.org/licenses/>.
+    -->  	
     <title>Lesson 1 HTML</title>
   </head>
   <body>
@@ -117,77 +143,119 @@
             this.answer2correct = false;
             this.answer3correct = false;
             this.answer4correct = false;
-            this.totalCorrect = 0;
+            this.totalCorrect = [this.answer1correct, this.answer2correct, this.answer3correct, this.answer4correct];
             this.completeSpan = document.getElementById('complete-span');
             this.correct = "<h2>****Correct!****</h2>";
             this.incorrect = "<h2>****Try Again!****</h2>";
         }
 
         Quiz.prototype.updateSpan = function() {
-        		switch(quiz.totalCorrect) {
-					    case 1:
-					      quiz.completeSpan.innerHTML = "25";
-					      break;
-					    case 2:
-					      quiz.completeSpan.innerHTML = "50";
-					      break;
-			        case 3:
-			        	quiz.completeSpan.innerHTML = "75";
-			        	break;
-			        case 4:
-			        	quiz.completeSpan.innerHTML = "100";
-			        	break;
-					    default:
-					      quiz.completeSpan.innerHTML = "0";
-					}
+        	var num = 0;
+        	for(var i= 0; i<quiz.totalCorrect.length; i++){
+        		if(quiz.totalCorrect[i]==true){
+        			num++;
+        		} else {
+
+        		}
+        		
+        	}
+
+        	switch(num) {
+				    case 1:
+				      quiz.completeSpan.innerHTML = "25";
+				      break;
+				    case 2:
+				      quiz.completeSpan.innerHTML = "50";
+				      break;
+			       	case 3:
+			       		quiz.completeSpan.innerHTML = "75";
+			       		break;
+			       	case 4:
+			       		quiz.completeSpan.innerHTML = "100";
+			       		break;
+				    default:
+				      quiz.completeSpan.innerHTML = "0";
+				}
         }
         var quiz = new Quiz();
 
         quiz.submitButton1.onclick = function() { 
         	quiz.answer1value = document.getElementById('answer1').value;
         	if(quiz.answer1value == "<div>") {
-        		quiz.answer1correct = true;
-        		quiz.responseDiv1.innerHTML = quiz.correct;
-        		quiz.totalCorrect++;
-        		quiz.updateSpan();
+        		if(quiz.answer1correct == false) {
+	        		quiz.answer1correct = true;
+	        		quiz.totalCorrect[0] = true;
+	        		quiz.responseDiv1.innerHTML = quiz.correct;
+	        		quiz.updateSpan();	
+        		} else {
+	        		quiz.responseDiv1.innerHTML = quiz.correct;
+	        		quiz.totalCorrect[0] = true;
+	        		quiz.updateSpan();
+        		}
         	} else {
         		quiz.responseDiv1.innerHTML = quiz.incorrect;
+        		quiz.totalCorrect[0] = false;
+        		quiz.updateSpan();
         	}
         }
 
         quiz.submitButton2.onclick = function() { 
         	quiz.answer2value = document.getElementById('answer2').value;
         	if(quiz.answer2value == "<section>") {
-        		quiz.answer2correct = true;
-        		quiz.responseDiv2.innerHTML = quiz.correct;
-        		quiz.totalCorrect++;
-        		quiz.updateSpan();
+        		if(quiz.answer2correct == false) {
+	        		quiz.answer2correct = true;
+	        		quiz.totalCorrect[1] = true;
+	        		quiz.responseDiv2.innerHTML = quiz.correct;
+	        		quiz.updateSpan();	
+        		} else {
+	        		quiz.responseDiv2.innerHTML = quiz.correct;
+	        		quiz.totalCorrect[1] = true;
+	        		quiz.updateSpan();
+        		}
         	} else {
         		quiz.responseDiv2.innerHTML = quiz.incorrect;
+        		quiz.totalCorrect[1] = false;
+        		quiz.updateSpan();
         	}
         }	 
 
         quiz.submitButton3.onclick = function() { 
         	quiz.answer3value = document.getElementById('answer3').value;
         	if(quiz.answer3value == "<li>") {
-        		quiz.answer3correct = true;
-        		quiz.responseDiv3.innerHTML = quiz.correct;
-        		quiz.totalCorrect++;
-        		quiz.updateSpan();
+        		if(quiz.answer3correct == false) {
+	        		quiz.answer3correct = true;
+	        		quiz.totalCorrect[2] = true;
+	        		quiz.responseDiv3.innerHTML = quiz.correct;
+	        		quiz.updateSpan();	
+        		} else {
+	        		quiz.responseDiv3.innerHTML = quiz.correct;
+	        		quiz.totalCorrect[2] = true;
+	        		quiz.updateSpan();
+        		}
         	} else {
         		quiz.responseDiv3.innerHTML = quiz.incorrect;
+        		quiz.totalCorrect[2] = false;
+        		quiz.updateSpan();
         	}
         }	
 
         quiz.submitButton4.onclick = function() { 
         	quiz.answer4value = document.getElementById('answer4').value;
         	if(quiz.answer4value == "<input>") {
-        		quiz.answer4correct = true;
-        		quiz.responseDiv4.innerHTML = quiz.correct;
-        		quiz.totalCorrect++;
-        		quiz.updateSpan();
+        		if(quiz.answer4correct == false) {
+	        		quiz.answer4correct = true;
+	        		quiz.totalCorrect[3] = true;
+	        		quiz.responseDiv4.innerHTML = quiz.correct;
+	        		quiz.updateSpan();	
+        		} else {
+	        		quiz.responseDiv4.innerHTML = quiz.correct;
+	        		quiz.totalCorrect[3] = true;
+	        		quiz.updateSpan();
+        		}
         	} else {
         		quiz.responseDiv4.innerHTML = quiz.incorrect;
+        		quiz.totalCorrect[3] = false;
+        		quiz.updateSpan();
         	}
         }		        	               
 		</script>
