@@ -9,7 +9,7 @@
   Website: coronite.net
   Source Files Available At: https://github.com/jcoro/TileBreaker
   Copyrighted material used in accordance with Fair-Use exemption for education in Title 17 of the U.S. Code Section 107 http://www.copyright.gov/title17/92chap1.html#107
-  
+
   ****Image Credits****
   Character images: http://bulbapedia.bulbagarden.net
   Background and Brick images: http://www.pokemon.com/us/
@@ -56,11 +56,11 @@
                                 <h2>Canvas Quiz</h2>
                                 <p>Using the info in the image above, what X Value and Y Value would place the paddle on the BOTTOM CENTER of the canvas (where the orange box is)?</p>
                                 <p><strong>HINT:</strong> The initial X VALUE  and Y VALUE of the paddle above are both set to 0.</p>
-                                <p><strong>HINT:</strong> The UPPER LEFT corner of the image will be placed at the canvas X and Y values we give.  This can make the X Value calculation a little tricky.  Think about what the X Value would be if the image CENTER was placed at the X Value.  How does this help us calculate the correct X Value?</p>                                
+                                <p><strong>HINT:</strong> The UPPER LEFT corner of the image will be placed at the canvas X and Y values we give.  This can make the X Value calculation a little tricky.  Think about what the X Value would be if the image CENTER was placed at the X Value.  How does this help us calculate the correct X Value?</p>
                             </div>
                         </div>
                     </div>
-                </div>                
+                </div>
             </div>
             <div id="right_section">
                 <div class="scoreboard test_scoreboard">
@@ -88,28 +88,28 @@
     <script>
 
         /**
-         * HEADER CLASS 
-         * 
+         * HEADER CLASS
+         *
          *  The Header for the page
-         * 
+         *
          */
-        function Header() { 
+        function Header() {
             this.canvasWidth = 780;
-            this.canvasHeight = 510;         
+            this.canvasHeight = 510;
             this.initialBackgroundImage = new Image();
             this.initialBackgroundImage.src = "../img/lesson1-bg.png";
         }
 
         /**
-         * QUIZ CLASS 
-         * 
+         * QUIZ CLASS
+         *
          *  When a quiz is initialized, it contains the values needed to run the quiz.
-         * 
+         *
          */
-        function Quiz(paddleWidth, paddleHeight, x, y, clipX, clipY, buttonId) {            
+        function Quiz(paddleWidth, paddleHeight, x, y, clipX, clipY, buttonId) {
             this.xValue = x;
             this.yValue = y;
-            this.paddle = new Paddle(x, y, paddleWidth, paddleHeight, clipX, clipY);        
+            this.paddle = new Paddle(x, y, paddleWidth, paddleHeight, clipX, clipY);
             this.scoreSpan = document.getElementById('score');
             this.characterSpan = document.getElementById('characters');
             var self = this;
@@ -142,7 +142,7 @@
                 else {
                     self.textColor = "#8B0000";
                     display.drawMessage("KEEP TRYING!");
-                    self.scoreSpan.innerHTML = "0%"; 
+                    self.scoreSpan.innerHTML = "0%";
                     self.characterSpan.innerHTML = "KEEP TRYING!"
                 }
             }
@@ -151,7 +151,7 @@
 
         Quiz.prototype.paddleImage = new Image();
         Quiz.prototype.paddleImage.src = "../img/paddle.png";
-          
+
         var quiz;
         var display;
         var header = new Header();
@@ -161,13 +161,13 @@
             quiz = new Quiz(168, 20, 0, 0, 0, 0, 'submitButton');
             display = new Screen(header.canvasWidth, header.canvasHeight);
             display.drawImage(header.initialBackgroundImage);
-            display.drawPaddle(quiz);            
-        }         
+            display.drawPaddle(quiz);
+        }
 
 
         /**
-         * CANVAS CLASS 
-         * 
+         * CANVAS CLASS
+         *
          * @param {number} width - width of canvas in pixels
          * @param {number} height - height of canvas in pixels
          */
@@ -187,15 +187,15 @@
          */
         Screen.prototype.drawImage = function(image) {
             this.ctx.drawImage(image, 0, 0);
-        };     
+        };
 
         /**
          * Clear the complete canvas
          */
         Screen.prototype.clear = function() {
             this.ctx.clearRect(0, 0, this.width, this.height);
-        };    
-           
+        };
+
 
         Screen.prototype.drawPaddle = function(g) {
             //console.log(g);
@@ -204,8 +204,8 @@
                 g.paddle.clipX,       //clip-x
                 g.paddle.clipY,       //clip-y
                 g.paddle.width,       //width of img
-                g.paddle.height,      //height of img 
-                g.paddle.x,           //canvas-x 
+                g.paddle.height,      //height of img
+                g.paddle.x,           //canvas-x
                 g.paddle.y,           //canvas-y
                 g.paddle.width,       //width of img
                 g.paddle.height       //height of img
@@ -217,18 +217,18 @@
             display.ctx.fillStyle = quiz.textColor;
             var width = display.ctx.measureText(text).width
             display.ctx.fillText(text, ((display.canvas.width-width)/2), 175);
-        };  
+        };
 
         Screen.prototype.draw = function(quiz) {
             this.clear();
             this.drawImage(header.initialBackgroundImage);
             this.drawPaddle(quiz);
-        }  
+        }
 
 
         /**
-         * PADDLE CLASS 
-         * 
+         * PADDLE CLASS
+         *
          */
         function Paddle(x, y, paddleWidth, paddleHeight, clipX, clipY) {
             this.x = x;
@@ -238,7 +238,7 @@
             this.clipY = clipX;
             this.clipX = clipY;
 
-        }; 
-     
+        };
+
     </script>
 </html>
