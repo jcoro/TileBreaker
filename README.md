@@ -7,7 +7,7 @@ This application is a modular website which was used to teach HTML, CSS, and Jav
 
 The age range for the course is from around 10 years old and up, and the course can be easily altered to cover more or less material as needed.
 
-Lesson folders in each root folder contain an `index.html` file which students can view in a browser.
+Lesson folders in the root folder each contain an `index.html` file which students can open and view in a browser (Google Chrome Recommended).
 
 ## Implementation:
 Download the source files and place the root folder on each student's computer.
